@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+<header class="masthead" style="background-image: url('#')"> 
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="site-heading">
+                    <h5>오늘은 뭐 입을까? 커뮤니티</h5>
+                    <span class="subheading">날씨에 맞는 옷을 추천해주는 사이트</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<h1>글 목록</h1>
+<h2><a href="{% url 'community:new' %}">글쓰기</a></h2>
+
+<div>
+	{% for community in communities %}
+	<div>
+		<h3>{{community.title}}</h3>
+		{{community.writer}}<br>
+		{{community.summary}}
+        <a href="{% url 'community:detail' community.id %}">더 보기</a>
+		<br>
+	</div>
+	{%endfor%}
+</div>
+
+{% endblock %}
