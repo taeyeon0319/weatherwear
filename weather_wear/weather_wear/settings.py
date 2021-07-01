@@ -49,6 +49,7 @@ INSTALLED_APPS += [
     'mainPage',
     'myPage',
     'community',
+    'accounts',
 
 ]
 
@@ -144,3 +145,20 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 SITE_ID = 1
+
+#allauth 설정
+AUTHENTICATION_BACKENDS = [
+    # superuser 로그인 기능
+    'django.contrib.auth.backends.ModelBackend',
+    # 이메일 등의 로그인 가능
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+# 로그인/로그아웃 후 이동 페이지
+LOGIN_REDIRECT_URL='/'
+ACCOUNT_LOGOUT_REDIRECT_URL='/'
+# signup customize
+ACCOUNT_SIGNUP_FORM_CLASS = 'accounts.forms.SignupForm'
+# 이메일 필수 입력
+ACCOUNT_EMAIL_REQUIRED  =  True
+# 회원가입 후 서버오류 해결
+ACCOUNT_EMAIL_VERIFICATION = 'none'

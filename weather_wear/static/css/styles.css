@@ -10812,3 +10812,55 @@ header.masthead .site-heading .h1 {
     font-size: 2.25rem;
   }
 }
+/* login 화면 */
+#login-page{
+  text-align: center;
+  margin: 90px 0px;
+  padding-top: 30px;
+  padding-bottom: 100px;
+}
+#login-page h1{
+  margin-bottom: 20px;
+}
+#login-page h1 a{
+  text-decoration: none;
+  color: black;
+}
+#login-page div p a{
+  text-decoration: none;
+  color: black;
+}
+/* logout 화면 */
+#logout-page{
+  text-align: center;
+  margin: 150px 0px;
+  padding-top: 29px;
+  padding-bottom: 100px;
+}
+#logout-page h1 {
+  margin-bottom: 30px;
+}
+#logout-page h1 a{
+  text-decoration: none;
+  color: black;
+}
+.upload-btn{
+  background:#fff; 
+  border:1 none;
+  border-radius: 5px;
+}
+/* 회원가입 화면 */
+#signup-page{
+  text-align: center;
+  padding: 40px 0px;
+}
+#signup-page h1 a{
+  text-decoration: none;
+  color: black;
+}
+#signup-page p a{
+  text-decoration: none;
+  color: black;
+}
+
+
