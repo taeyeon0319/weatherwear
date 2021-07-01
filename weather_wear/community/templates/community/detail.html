@@ -12,15 +12,33 @@
         </div>
     </div>
 </header>
+<style>
+    button{
+        background-color:white;
+        border-radius:5px;
+        font-size: medium;
+        font-weight: bold;
+        margin-bottom:10px;
+    }
+    button:hover{
+        background-color: rgb(187, 223, 236);
+    }
+</style>
+<div style="margin-left: 80px;">
+    <h1>{{community.title}}</h1>
+    작성자 : {{community.writer}}<br>
+    작성일시 : {{community.pub_date}}
+    <hr>
+    {% if community.image %}
+        <center><p><img src="{{ community.image.url }}" alt="사진"></p></center>
+    {% endif %}
+    <p>{{community.body}}</p>
+    <center>
+        <button><a href="{% url 'community:edit' community.id %}">수정하기</a></button>
+        <button><a href="{% url 'community:delete' community.id %}">삭제하기</a></button>
+        <button><a href="{% url 'community:show' %}">목록</a></button>
+    </center>
 
-<h1>{{community.title}}</h1>
-작성자 : {{community.writer}}
-날짜 : {{community.pub_date}}
-<hr>
-{% if community.image %}
-    <p><img src="{{ community.image.url }}" alt="사진"></p>
-{% endif %}
-<p>{{community.body}}</p>
-<a href="{% url 'community:edit' community.id %}">수정하기</a>
-<a href="{% url 'community:delete' community.id %}">삭제하기</a>
+
+</div>
 {% endblock %}

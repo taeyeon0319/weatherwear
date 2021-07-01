@@ -12,13 +12,26 @@
         </div>
     </div>
 </header>
-
-<form action="{% url 'community:create' %}" method="post" enctype="multipart/form-data">
-	{%csrf_token%}
-	<p>제목 : <input type="text" name="title"></p>
-	<p>작성자 : <input type="text" name="writer"></p>
-    <p>사진 : <input type="file" name = "image"></p>
-	<p>내용 : <textarea type="text" name="body" id="" cols="30" rows="10"></textarea></p>
-	<button type="submit">제출</button>
-</form>
+<style>
+    button{
+        background-color:white;
+        border-radius:5px;
+        font-size: medium;
+        font-weight: bold;
+        margin-bottom:10px;
+    }
+    button:hover{
+        background-color: rgb(187, 223, 236);
+    }
+</style>
+<div style="margin-left: 80px;">
+    <form action="{% url 'community:create' %}" method="post" enctype="multipart/form-data">
+        {%csrf_token%}
+        <p>제목 : <input type="text" name="title"></p>
+        <p>작성자 : <input type="text" name="writer"></p>
+        <p>사진 : <input type="file" name = "image"></p>
+        <p>내용 : <textarea type="text" name="body" id="" cols="30" rows="10"></textarea></p>
+        <button type="submit">제출</button>
+    </form>
+</div>
 {% endblock %}

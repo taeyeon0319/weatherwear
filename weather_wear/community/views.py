@@ -3,11 +3,11 @@ from .models import Community
 from django.utils import timezone
 
 def show(request):
-    communities = Community.objects.all()
+    communities = Community.objects.order_by('-pub_date')
     return render(request, 'community/show.html', {'communities':communities})
 
 def detail(request, id):
-    community = get_object_or_404(Community, id = id)
+    community = get_object_or_404(Community, id = id) 
     return render(request, 'community/detail.html', {'community':community})
 
 def new(request):
@@ -33,6 +33,7 @@ def update(request, id):
     update_community.writer = request.POST['writer']
     update_community.pub_date = timezone.now()
     update_community.body = request.POST['body']
+    update_community.image = request.FILES.get('image')
     update_community.save()
     return redirect('community:detail', update_community.id)
 
@@ -40,3 +41,4 @@ def delete(request, id):
     delete_community = Community.objects.get(id = id)
     delete_community.delete()
     return redirect('community:show')
+
