@@ -26,6 +26,10 @@
 </style>
 <div style="margin-left: 80px;">
     <h1>{{community.title}}</h1>
+    날씨 : {{community.weather}}<br>
+    성별 : {{community.gender}}<br>
+    
+    조회수 : {{ community.view_count }}<br>
     {% if community.writer %}
         작성자 : {{ community.writer }}
     {% else %}

@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Community, Comment
 from django.utils import timezone
+from django.contrib.auth.decorators import login_required
 
 def show(request):
     communities = Community.objects.order_by('-pub_date')
@@ -9,6 +10,8 @@ def show(request):
 def detail(request, id):
     community = get_object_or_404(Community, id = id) 
     all_comments = community.comments.order_by('-created_at')
+    community.view_count += 1
+    community.save()
     return render(request, 'community/detail.html', {'community':community, 'comments':all_comments})
 
 def new(request):
@@ -21,6 +24,8 @@ def create(request):
     new_community.pub_date = timezone.now()
     new_community.body = request.POST['body']
     new_community.image = request.FILES.get('image')
+    new_community.weather = request.POST['weather']
+    new_community.gender = request.POST['gender']
     new_community.save()
     return redirect('community:detail', new_community.id)
 
@@ -35,6 +40,8 @@ def update(request, id):
     update_community.pub_date = timezone.now()
     update_community.body = request.POST['body']
     update_community.image = request.FILES.get('image')
+    update_community.weather = request.POST['weather']
+    update_community.gender = request.POST['gender']
     update_community.save()
     return redirect('community:detail', update_community.id)
 
