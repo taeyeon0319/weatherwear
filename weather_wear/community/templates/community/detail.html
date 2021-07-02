@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+<header class="masthead" style="background-image: url('#')"> <!-- 배경이미지 날씨 넣기 -->
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="site-heading">
+                    <h5>오늘은 뭐 입을까? 커뮤니티</h5>
+                    <span class="subheading">날씨에 맞는 옷을 추천해주는 사이트</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<style>
+    button{
+        background-color:white;
+        border-radius:5px;
+        font-size: medium;
+        font-weight: bold;
+        margin-bottom:10px;
+    }
+    button:hover{
+        background-color: rgb(187, 223, 236);
+    }
+</style>
+<div style="margin-left: 80px;">
+    <h1>{{community.title}}</h1>
+    작성자 : {{community.writer}}<br>
+    작성일시 : {{community.pub_date}}
+    <hr>
+    {% if community.image %}
+        <center><p><img src="{{ community.image.url }}" alt="사진"></p></center>
+    {% endif %}
+    <p>{{community.body}}</p>
+    <center>
+        <button><a href="{% url 'community:edit' community.id %}">수정하기</a></button>
+        <button><a href="{% url 'community:delete' community.id %}">삭제하기</a></button>
+        <button><a href="{% url 'community:show' %}">목록</a></button>
+    </center>
+
+
+</div>
+{% endblock %}

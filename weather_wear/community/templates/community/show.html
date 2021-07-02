@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block content %}
+<header class="masthead" style="background-image: url('#')"> 
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="site-heading">
+                    <h3>커뮤니티</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<style>
+    button{
+        background-color:white;
+        border-radius:5px;
+        font-size: medium;
+        font-weight: bold;
+    }
+    button:hover{
+        background-color: rgb(187, 223, 236);
+    }
+</style>
+<div class="container my-3">
+    <table class="table">
+        <thead>
+            <tr class="thead-blue">
+                <th>작성자</th>
+                <th>제목</th>
+                <th>내용</th>
+                <th>작성일시</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for community in communities %}
+            <tr>
+                <td>{{community.writer}}</td>
+                <td>{{community.title}}</td>
+                <td>
+                    <a href="{% url 'community:detail' community.id %}">
+                        {{community.summary}}
+                    </a>
+                </td>
+                <td>{{community.pub_date}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <button><a href="{% url 'community:new' %}">글쓰기</a></button>
+</div>
+{% endblock %}
