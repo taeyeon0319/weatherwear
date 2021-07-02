@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 {% block content %}
 <header class="masthead" style="background-image: url('#')"> <!-- 배경이미지 날씨 넣기 -->
     <div class="container position-relative px-4 px-lg-5">
@@ -24,13 +24,15 @@
         background-color: rgb(187, 223, 236);
     }
 </style>
-<div style="margin-left: 80px;">
-    <form action="{% url 'community:create' %}" method="post" enctype="multipart/form-data">
-        {%csrf_token%}
-        <p>제목 : <input type="text" name="title"></p>
-        <p>사진 : <input type="file" name = "image"></p>
-        <p>내용 : <textarea type="text" name="body" id="" cols="30" rows="10"></textarea></p>
-        <button type="submit">제출</button>
-    </form>
+<div class="container"> 
+	<h1> 댓글 수정 </h1> 
+	<form action="{% url 'community:update_comment' comment.id %}" method="POST"> 
+		{% csrf_token %} 
+		 <div class="form-group">
+			 <label>댓글 내용</label>
+			 <textarea class="form-control" name="content"> {{ comment.content }} </textarea>
+		 </div>
+ 		<button type="submit" value="댓글 수정">댓글 수정</button>
+	 </form> 
 </div>
 {% endblock %}

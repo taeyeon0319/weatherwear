@@ -16,7 +16,6 @@
 <form action="{% url 'community:update' community.id %}" method="post" enctype="multipart/form-data">
 	{%csrf_token%}
 	<p>제목 : <input type="text" name="title" value="{{community.title}}"></p>
-	<p>작성자 : <input type="text" name="writer" value="{{community.writer}}"></p>
     <p>사진 : <input type="file" name = "image"></p>
 	<p>내용 : <textarea type="text" name="body" id="" cols="30" rows="10">{{community.body}}</textarea></p>
 	<button type="submit">제출</button>
