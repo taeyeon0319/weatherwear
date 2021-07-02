@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+{% block content %}
+<header class="masthead" style="background-image: url('#')"> <!-- 배경이미지 날씨 넣기 -->
+    <div class="container position-relative px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <div class="site-heading">
+                    <h1>오늘은 뭐 입을까?</h1>
+                    <span class="subheading">날씨에 맞는 옷을 추천해주는 사이트</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<section id="logout-page">
+    <div>
+        <h1><a href="{% url 'mainPage:main' %}">오늘은 뭐 입을까?</a></h1>
+    </div>
+    <div class="logout-sec">
+        <form class="logout" method="POST" action="{% url 'account_logout' %}">
+            {% csrf_token %} {{ form.as_p}}
+            <p>정말 로그아웃 하시겠습니까?</p>
+            <div class="logout-btn">
+                <input type="submit" class="upload-btn" value="로그아웃">
+            </div>
+        </form>
+    </div>
+</section>
+<style type="text/css">
+    /* login 화면 */
+    #login-page{
+      text-align: center;
+      margin: 90px 0px;
+      padding-top: 30px;
+      padding-bottom: 100px;
+    }
+    #login-page h1{
+      margin-bottom: 20px;
+    }
+    #login-page h1 a{
+      text-decoration: none;
+      color: black;
+    }
+    #login-page div p a{
+      text-decoration: none;
+      color: black;
+    }
+    /* logout 화면 */
+    #logout-page{
+      text-align: center;
+      margin: 150px 0px;
+      padding-top: 29px;
+      padding-bottom: 100px;
+    }
+    #logout-page h1 {
+      margin-bottom: 30px;
+    }
+    #logout-page h1 a{
+      text-decoration: none;
+      color: black;
+    }
+    .upload-btn{
+      background:#fff; 
+      border:1 none;
+      border-radius: 5px;
+    }
+    /* 회원가입 화면 */
+    #signup-page{
+      text-align: center;
+      padding: 40px 0px;
+    }
+    #signup-page h1 a{
+      text-decoration: none;
+      color: black;
+    }
+    #signup-page p a{
+      text-decoration: none;
+      color: black;
+    }
+    </style>
+{% endblock %}
