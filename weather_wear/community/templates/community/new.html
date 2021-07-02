@@ -27,8 +27,24 @@
 <div style="margin-left: 80px;">
     <form action="{% url 'community:create' %}" method="post" enctype="multipart/form-data">
         {%csrf_token%}
-        <p>제목 : <input type="text" name="title"></p>
-        <p>작성자 : <input type="text" name="writer"></p>
+        <p>제목 : <textarea type="text" name="title" cols="30" rows="1"></textarea></p>
+        <p>성별 :
+            <select name="gender">
+            <option disabled>---성별---</option>
+            <option value="남자">남자</option>
+            <option value="여자">여자</option>
+        </select></p>
+        <p>날씨 :
+            <select name="weather">
+            <option disabled>------날씨------</option>
+            <option value="맑음">맑음</option>
+            <option value="비">비</option>
+            <option value="흐림">흐림</option>
+            <option value="우박">우박</option>
+            <option value="눈">눈</option>
+            <option value="안개">안개</option>
+            <option value="소나기">소나기</option>
+        </select></p>
         <p>사진 : <input type="file" name = "image"></p>
         <p>내용 : <textarea type="text" name="body" id="" cols="30" rows="10"></textarea></p>
         <button type="submit">제출</button>

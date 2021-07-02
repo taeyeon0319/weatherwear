@@ -22,31 +22,44 @@
         background-color: rgb(187, 223, 236);
     }
 </style>
+{% if user.is_authenticated %} 
 <div class="container my-3">
     <table class="table">
         <thead>
             <tr class="thead-blue">
+                <th>성별</th>
+                <th>날씨</th>
                 <th>작성자</th>
                 <th>제목</th>
-                <th>내용</th>
                 <th>작성일시</th>
+                <th>조회수</th>
             </tr>
         </thead>
         <tbody>
             {% for community in communities %}
             <tr>
+                <td>{{community.gender}}</td>
+                <td>{{community.weather}}</td>
                 <td>{{community.writer}}</td>
-                <td>{{community.title}}</td>
-                <td>
+                <td style="padding-right: 300px;">
                     <a href="{% url 'community:detail' community.id %}">
-                        {{community.summary}}
+                        {{community.title}}
                     </a>
                 </td>
                 <td>{{community.pub_date}}</td>
+                <td style="text-align: center;">{{community.view_count}}</td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
     <button><a href="{% url 'community:new' %}">글쓰기</a></button>
 </div>
+{% else %}
+    <center style="margin-bottom: 100px;">
+    <h3>로그인 후 이용이 가능합니다.</h3>
+    <button><a href="{% url 'account_login' %}" >로그인</a></button>
+    <button><a href="{% url 'account_signup' %}">회원가입</a></button>
+    </center>
+{% endif %}
+
 {% endblock %}
