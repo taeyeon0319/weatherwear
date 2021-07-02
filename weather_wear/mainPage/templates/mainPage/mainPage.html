@@ -22,9 +22,11 @@
                                     <p class="lead fw-normal text-muted mb-0">기온: {{ weather.temp_now }} </p>
                                     <p class="lead fw-normal text-muted mb-0">날씨: {{ weather.weather_now }} </p>
                                     {% if weather.temp_now == "21°C" or "22" or "23°C" or "24°C" or "25°C" %}
-                                        <p>코디 : 얇은 긴바지와 가벼운 셔츠</p>
+                                        <p>코디 : 얇은 긴바지, 가벼운 셔츠</p>
                                     {% elif weather.temp_now == "16°C" or "17°C" or "18°C" or "19°C" or "20°C"  %}
-                                        <p>코디 : 청바지 or 면바지와 얇은 티와 가디건을 챙기세오</p>
+                                        <p>코디 : 청바지 or 면바지와 얇은 티, 가디건을 챙기세오</p>
+                                    {% elif weather.temp_now == "26°C" or "27°C" or "28°C" or "29°C" or "30°C"  %}
+                                        <p>코디 : 반팔 반바지 강추</p>
                                     {% endif %}
                                 </div>
                             </div>
