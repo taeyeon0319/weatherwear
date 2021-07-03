@@ -19,77 +19,86 @@
 <div class="container" style="margin-top: 5em; margin-bottom: 10em;">
     <!--카테고리 목록-->
     <div class="col-md-4">
-      <ul class="list-group help-group">
-        <div class="faq-list list-group nav nav-tabs">
-          <!-- 7개의 탭 -->
-          <a href="{% url 'myPage:mypage' %}" class="list-group-item" role="tab" data-toggle="tab">
-            마이페이지
-          </a>
-          <a href="{% url 'myPage:my_clothes' %}" class="list-group-item active" role="tab" data-toggle="tab">
-            <i class="mdi mdi-star"></i> 자기 착장 페이지
-          </a>
-          <a href="{% url 'myPage:writing_list' %}" class="list-group-item" role="tab" data-toggle="tab">
-            <i class="mdi mdi-star"></i> 커뮤니티에 작성한 글
-          </a>
-          <a href="{% url 'myPage:profile' %}" class="list-group-item" role="tab" data-toggle="tab">
-            <i class="mdi mdi-account"></i> 개인정보
-          </a>
-        </div>
-      </ul>
-  </div>
+        <ul class="list-group help-group">
+          <div class="faq-list list-group nav nav-tabs">
+            <!-- 7개의 탭 -->
+            <a href="{% url 'myPage:mypage' %}" class="list-group-item" role="tab" data-toggle="tab">
+              마이페이지
+            </a>
+            <a href="{% url 'myPage:my_clothes' %}" class="list-group-item active" role="tab" data-toggle="tab">
+              <i class="mdi mdi-star"></i> 자기 착장 페이지
+            </a>
+            <a href="{% url 'myPage:writing_list' %}" class="list-group-item" role="tab" data-toggle="tab">
+              <i class="mdi mdi-star"></i> 커뮤니티에 작성한 글
+            </a>
+            <a href="{% url 'myPage:profile' %}" class="list-group-item" role="tab" data-toggle="tab">
+              <i class="mdi mdi-account"></i> 개인정보
+            </a>
+          </div>
+        </ul>
+    </div>
     <div class="col-md-8">
         <!-- Page content-->
         <div class="container-fluid">
-            <h1 class="mt-4">개인정보 수정</h1>
-            <table class="profile" style="margin: 0 0 0 0; width: 100%;">
-                <thead>
-                <tr>
-                  <th scope="cols" width=25%>항목</th>
-                  <th scope="cols">내용</th>
-                </tr>
-                </thead>
-                <tbody>
-                <form action="{% url 'myPage:update' %}" method="post">
-                    {%csrf_token%}
-                <tr>
-                  <th scope="row">이름</th>
-                  <td><input type="text" name ="name" value="{{ profiles.name }}"></td>
-                </tr>
-                <tr>
-                    <th scope="row">이메일</th>
-                    <td><input type="text" name ="email" value="{{ profiles.email }}"></td>
+            <h3>수정하기</h3>
+                <table class="profile">
+                    <thead>
+                    <tr>
+                      <th scope="cols">항목</th>
+                      <th scope="cols">내용</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <form action="{% url 'myPage:update_clothes' clothes.id%}" method="post" enctype="multipart/form-data">
+                        {%csrf_token%}
+                    <tr>
+                      <th scope="row">제목</th>
+                      <td><input type="text" name="title" value="{{clothes.title}}"></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">카테고리</th>
+                        <td>
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="category_radio" id="inlineRadio1" value="맑음">
+                              <label class="form-check-label" for="inlineRadio1">맑음</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="category_radio" id="inlineRadio2" value="흐림">
+                              <label class="form-check-label" for="inlineRadio2">흐림</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="category_radio" id="inlineRadio3" value="비">
+                              <label class="form-check-label" for="inlineRadio3">비</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="category_radio" id="inlineRadio4" value="눈">
+                              <label class="form-check-label" for="inlineRadio4">눈</label>
+                            </div>
+                        </td>
+                    </tr>
+                   <tr>
+                        <th scope="row">온도</th>
+                        <td><input type="number" name="temperature" value="{{clothes.temperature}}"></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">사진</th>
+                        <td><input type='file' name='thumbnail' value="{{clothes.thumbnail}}"></td>
+                    </tr>
+                    <tr>
+                      <th scope="row">메모</th>
+                      <td><textarea type='text' name='memo' id='' cols='30' rows='5' >{{clothes.memo}}</textarea></td>
                   </tr>
-                  <tr>
-                    <th scope="row">성별</th>
-                    <td>
-                        <select name="gender">
-                            <option value="남자">남자</option>
-                            <option value="여자">여자</option>
-                        </select>
-                  </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">키</th>
-                    <td><input type="text" name ="height" value="{{ profiles.height }}"></td>
-                  </tr>
-                  <tr>
-                    <th scope="row">체형</th>
-                    <td>
-                        <select name="bodyForm">
-                            <option value="마름">마름</option>
-                            <option value="보통">보통</option>
-                            <option value="과체중">과체중</option>
-                        </select>
-                  </td>
-                  </tr>
-                  <tr scope="row">
-                    <td colspan="2" style="text-align: center;">
-                        <button type="submit">수정</button>
-                    </td>    
-                  </tr>
-                  </form>
-                </tbody>
-            </table>
+                    <tr>
+                      <td class = "update" colspan="2" style="text-align: center;">
+                        <button type="submit">제출</button>
+                      </td>
+                    </tr>
+                    </form>
+                    </tbody>
+                </table>
+         
+      
+
         </div>
     </div>
 </div>
@@ -208,8 +217,7 @@
   border-top: 1px solid #ccc;
   border-right: 1px solid #ccc;
   border-bottom: 2px solid #c00;
-  background: #505050;
-  color: white;
+  background: #dcdcd1;
 }
 .profile tbody th {
   width: 150x;
