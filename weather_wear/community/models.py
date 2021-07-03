@@ -25,11 +25,17 @@ class Community(models.Model):
     view_count = models.PositiveIntegerField(default = 0)
     weather = models.CharField(max_length=80, choices=WEATHER)
     gender = models.CharField(max_length=2, choices=GENDER)
+    like_user_set = models.ManyToManyField(User, blank=True, related_name="like_user_set", through="Like")
+
     def __str__(self):
         return self.title
 
     def summary(self):
         return self.body[:20]
+
+    @property
+    def like_count(self):
+        return self.like_user_set.count()
 
 class Comment(models.Model):
     content = models.TextField()
@@ -37,3 +43,12 @@ class Comment(models.Model):
     community = models.ForeignKey(Community, on_delete=models.CASCADE, related_name='comments')
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now=True)
+
+class Like(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    community = models.ForeignKey(Community, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        unique_together = (('user','community'))

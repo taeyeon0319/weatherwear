@@ -13,4 +13,5 @@ urlpatterns = [
     path('<str:community_id>/create_comment', create_comment, name="create_comment"),
     path('<int:comment_id>/update_comment', update_comment, name="update_comment"),
     path('<int:comment_id>/delete_comment', delete_comment, name="delete_comment"),
+    path('<int:community_id>/community_like', community_like, name="community_like"),
 ]

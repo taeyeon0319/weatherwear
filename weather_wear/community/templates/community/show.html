@@ -33,6 +33,7 @@
                 <th>제목</th>
                 <th>작성일시</th>
                 <th>조회수</th>
+                <th>좋아요</th>
             </tr>
         </thead>
         <tbody>
@@ -41,13 +42,20 @@
                 <td>{{community.gender}}</td>
                 <td>{{community.weather}}</td>
                 <td>{{community.writer}}</td>
-                <td style="padding-right: 300px;">
+                <td>
                     <a href="{% url 'community:detail' community.id %}">
                         {{community.title}}
                     </a>
                 </td>
                 <td>{{community.pub_date}}</td>
                 <td style="text-align: center;">{{community.view_count}}</td>
+                <td style="text-align: center;"><a href ="{% url 'community:community_like' community.id %}">
+                    {% if user in community.like_user_set.all %}
+                        <i class="fas fa-heart"></i>
+                    {% else %}
+                        <i class="far fa-heart"></i>
+                    {% endif %}
+                </a></td>
             </tr>
             {% endfor %}
         </tbody>
