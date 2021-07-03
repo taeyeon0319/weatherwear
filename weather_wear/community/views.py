@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Community, Comment
+from .models import Community, Comment, Like
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 
@@ -72,3 +72,18 @@ def delete_comment(request, comment_id):
     community_id = comment.community.id
     comment.delete()
     return redirect('community:detail', community_id)
+
+@login_required
+def community_like(request, community_id):
+    community = get_object_or_404(Community, pk=community_id)
+
+    #좋아요 확인
+    if request.user in community.like_user_set.all():
+        community.like_user_set.remove(request.user)
+    else:
+        community.like_user_set.add(request.user)
+
+    if request.GET.get('redirect_to')=='detail':
+        return redirect('community:detail', community_id)
+    else:
+        return redirect('community:show')

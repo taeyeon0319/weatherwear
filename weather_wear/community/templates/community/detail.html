@@ -36,7 +36,14 @@
         작성자 : 알 수 없음
     {% endif %}
     <br>
-    작성일시 : {{community.pub_date}}
+    작성일시 : {{community.pub_date}}<br>
+    <a href ="{% url 'community:community_like' community.id %}?redirect_to=detail">
+        {% if user in community.like_user_set.all %}
+            <i class="fas fa-heart"></i>
+        {% else %}
+            <i class="far fa-heart"></i>
+        {% endif %}
+    </a>
     <hr>
     {% if community.image %}
         <center><p><img src="{{ community.image.url }}" alt="사진" width="300px"></p></center>
