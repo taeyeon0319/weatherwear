@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 {% block content %}
 <header class="masthead" style="background-image: url('#')"> <!-- 배경이미지 날씨 넣기 -->
     <div class="container position-relative px-4 px-lg-5">
@@ -16,17 +17,87 @@
                             <div class="row gx-5 align-items-center">
                                 <div class="col-lg-6">
                                     <h2 class="fw-bolder">오늘의 코디</h2>
-                                    <div class="col-lg-6"><img class="img-fluid rounded mb-5 mb-lg-0" src="https://dummyimage.com/600x400/343a40/6c757d" alt="..." /></div>
                                     <p class="lead fw-normal text-muted mb-0">지역: {{ weather.region }} </p>
                                     <p class="lead fw-normal text-muted mb-0">시간: {{ weather.dayhour }} </p>
                                     <p class="lead fw-normal text-muted mb-0">기온: {{ weather.temp_now }} </p>
                                     <p class="lead fw-normal text-muted mb-0">날씨: {{ weather.weather_now }} </p>
-                                    {% if weather.temp_now == "21°C" or "22" or "23°C" or "24°C" or "25°C" %}
-                                        <p>코디 : 얇은 긴바지, 가벼운 셔츠</p>
-                                    {% elif weather.temp_now == "16°C" or "17°C" or "18°C" or "19°C" or "20°C"  %}
-                                        <p>코디 : 청바지 or 면바지와 얇은 티, 가디건을 챙기세오</p>
-                                    {% elif weather.temp_now == "26°C" or "27°C" or "28°C" or "29°C" or "30°C"  %}
-                                        <p>코디 : 반팔 반바지 강추</p>
+                                    {% if weather.weather_now == "맑음" %}        
+                                        {% if weather.temp_now == "23°C" %}
+                                            <div class="col-lg-6"><img src="{% static 'images/9.38mz_summer' %}" alt="..." /></div>
+                                            <p>코디 : 반팔, 얇은 셔츠, 반바지, 면바지</p>
+                                        {% elif weather.temp_now == "24°C" %}
+                                            <p>코디 : 반팔, 얇은 셔츠, 반바지, 면바지</p>
+                                        {% elif weather.temp_now == "25°C" %}
+                                            <p>코디 : 반팔, 얇은 셔츠, 반바지, 면바지</p>
+                                        {% elif weather.temp_now == "26°C" %}
+                                            <p>코디 : 반팔, 얇은 셔츠, 반바지, 면바지</p>
+                                        {% elif weather.temp_now == "20°C" %}
+                                            <p>코디 : 얇은 가디건, 긴파티, 면바지, 청바지</p>
+                                        {% elif weather.temp_now == "21°C" %}
+                                            <p>코디 : 얇은 가디건, 긴파티, 면바지, 청바지</p>
+                                        {% elif weather.temp_now == "22°C" %}
+                                            <p>코디 : 얇은 가디건, 긴파티, 면바지, 청바지</p>       
+                                        {% else %}
+                                            <p>코디 : 민소매, 반팔, 반바지, 치마</p>
+                                        {% endif %}    
+                                    {% endif %}
+                                    {% if weather.weather_now == "구름 조금" %}        
+                                        {% if weather.temp_now == "23°C" %}
+                                            <p>코디 : 반팔, 얇은 셔츠, 반바지, 면바지</p>
+                                        {% elif weather.temp_now == "24°C" %}
+                                            <p>코디 : 반팔, 얇은 셔츠, 반바지, 면바지</p>
+                                        {% elif weather.temp_now == "25°C" %}
+                                            <p>코디 : 반팔, 얇은 셔츠, 반바지, 면바지</p>
+                                        {% elif weather.temp_now == "26°C" %}
+                                            <p>코디 : 반팔, 얇은 셔츠, 반바지, 면바지</p>
+                                        {% elif weather.temp_now == "20°C" %}
+                                            <p>코디 : 얇은 가디건, 긴파티, 면바지, 청바지</p>
+                                        {% elif weather.temp_now == "21°C" %}
+                                            <p>코디 : 얇은 가디건, 긴파티, 면바지, 청바지</p>
+                                        {% elif weather.temp_now == "22°C" %}
+                                            <p>코디 : 얇은 가디건, 긴파티, 면바지, 청바지</p>       
+                                        {% else %}
+                                            <p>코디 : 민소매, 반팔, 반바지, 치마</p>
+                                        {% endif %}    
+                                    {% endif %}
+                                    {% if weather.weather_now == "대체로 흐림" %}        
+                                        {% if weather.temp_now == "23°C" %}
+                                            <p>코디 : 반팔, 얇은 셔츠, 반바지, 면바지</p>
+                                        {% elif weather.temp_now == "24°C" %}
+                                            <p>코디 : 반팔, 얇은 셔츠, 반바지, 면바지</p>
+                                        {% elif weather.temp_now == "25°C" %}
+                                            <p>코디 : 반팔, 얇은 셔츠, 반바지, 면바지</p>
+                                        {% elif weather.temp_now == "26°C" %}
+                                            <p>코디 : 반팔, 얇은 셔츠, 반바지, 면바지</p>
+                                        {% elif weather.temp_now == "20°C" %}
+                                            <p>코디 : 얇은 가디건, 긴파티, 면바지, 청바지</p>
+                                        {% elif weather.temp_now == "21°C" %}
+                                            <p>코디 : 얇은 가디건, 긴파티, 면바지, 청바지</p>
+                                        {% elif weather.temp_now == "22°C" %}
+                                            <p>코디 : 얇은 가디건, 긴파티, 면바지, 청바지</p>       
+                                        {% else %}
+                                            <p>코디 : 민소매, 반팔, 반바지, 치마</p>
+                                        {% endif %}    
+                                    {% endif %}
+                                    {% if weather.weather_now == "흐림" %}        
+                                        {% if weather.temp_now == "23°C" %}
+                                            <p>코디 : 반팔, 얇은 셔츠, 반바지, 면바지</p>
+                                        {% elif weather.temp_now == "24°C" %}
+                                            <p>코디 : 반팔, 얇은 셔츠, 반바지, 면바지</p>
+                                        {% elif weather.temp_now == "25°C" %}
+                                            <p>코디 : 반팔, 얇은 셔츠, 반바지, 면바지</p>
+                                        {% elif weather.temp_now == "26°C" %}
+                                        <div class="col-lg-6"><img src="{% static 'image/9.38mz_summer.jpg' %}"></div>
+                                            <p>코디 : 반팔, 얇은 셔츠, 반바지, 면바지</p>
+                                        {% elif weather.temp_now == "20°C" %}
+                                            <p>코디 : 얇은 가디건, 긴파티, 면바지, 청바지</p>
+                                        {% elif weather.temp_now == "21°C" %}
+                                            <p>코디 : 얇은 가디건, 긴파티, 면바지, 청바지</p>
+                                        {% elif weather.temp_now == "22°C" %}
+                                            <p>코디 : 얇은 가디건, 긴파티, 면바지, 청바지</p>       
+                                        {% else %}
+                                            <p>코디 : 민소매, 반팔, 반바지, 치마</p>
+                                        {% endif %}    
                                     {% endif %}
                                 </div>
                             </div>

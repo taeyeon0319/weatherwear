@@ -26,6 +26,6 @@ def main(request):
     print(soup.find("div", attrs={"class": "BNeawe s3v9rd AP7Wnd"}).text)
     print(soup.find("span", attrs={"class": "BNeawe s3v9rd AP7Wnd"}).text)
     print(soup.find('div', attrs={'class': 'BNeawe vvjwJb AP7Wnd'}).text)
-
+    
 
     return render(request, 'mainPage/mainPage.html', {'weather': result})
