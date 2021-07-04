@@ -71,7 +71,7 @@ def filter_list(request):
 #자기착장페이지로 이동
 def my_clothes(request):
     user=request.user
-    clothes=MyClothes.objects.filter(user=user).order_by('-id')
+    clothes=MyClothes.objects.filter(user=user).order_by('-post_date')
     check=request.user.email
     profiles=UserProfile.objects.get(email=check)
     page=int(request.GET.get('p',1))

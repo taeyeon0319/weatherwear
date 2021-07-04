@@ -605,7 +605,7 @@ progress {
 .container-lg,
 .container-md,
 .container-sm {
-  width: 80%;
+  width: 100%;
   padding-right: var(--bs-gutter-x, 0.75rem);
   padding-left: var(--bs-gutter-x, 0.75rem);
   margin-right: auto;
@@ -4301,7 +4301,7 @@ textarea.form-control-lg {
 .card-img,
 .card-img-top,
 .card-img-bottom {
-  width: 50%;
+  width: 80%;
 }
 
 .card-group > .card {
@@ -10872,3 +10872,6 @@ header.masthead .site-heading .h1 {
 }
 
 
+#btnclear{
+  display: inline-block;
+}
