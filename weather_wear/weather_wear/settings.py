@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'allauth',
     'allauth.account',
+    'django_filters',
 ]
 
 # 프로젝트에 생성한 app 목록 추가
