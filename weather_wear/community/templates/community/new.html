@@ -1,12 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
-<header class="masthead" style="background-image: url('#')"> <!-- 배경이미지 날씨 넣기 -->
+<header class="masthead" style="background-image: url('/static/images/cloud.jpg')"> <!-- 배경이미지 날씨 넣기 -->
     <div class="container position-relative px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
             <div class="col-md-10 col-lg-8 col-xl-7">
                 <div class="site-heading">
-                    <h5>오늘은 뭐 입을까? 커뮤니티</h5>
-                    <span class="subheading">날씨에 맞는 옷을 추천해주는 사이트</span>
+                    <h3>커뮤니티</h3>
                 </div>
             </div>
         </div>
@@ -27,8 +26,24 @@
 <div style="margin-left: 80px;">
     <form action="{% url 'community:create' %}" method="post" enctype="multipart/form-data">
         {%csrf_token%}
-        <p>제목 : <input type="text" name="title"></p>
-        <p>작성자 : <input type="text" name="writer"></p>
+        <p>제목 : <textarea type="text" name="title" cols="30" rows="1"></textarea></p>
+        <p>성별 :
+            <select name="gender">
+            <option disabled>---성별---</option>
+            <option value="남자">남자</option>
+            <option value="여자">여자</option>
+        </select></p>
+        <p>날씨 :
+            <select name="weather">
+            <option disabled>------날씨------</option>
+            <option value="맑음">맑음</option>
+            <option value="비">비</option>
+            <option value="흐림">흐림</option>
+            <option value="우박">우박</option>
+            <option value="눈">눈</option>
+            <option value="안개">안개</option>
+            <option value="소나기">소나기</option>
+        </select>
         <p>사진 : <input type="file" name = "image"></p>
         <p>내용 : <textarea type="text" name="body" id="" cols="30" rows="10"></textarea></p>
         <button type="submit">제출</button>
