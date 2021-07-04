@@ -1,6 +1,7 @@
 from django.shortcuts import render
 import requests
 from bs4 import BeautifulSoup
+
 def main(request):
     # 지역은 서울로 고정
     city = 'seoul'
