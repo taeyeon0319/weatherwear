@@ -6,7 +6,14 @@ from accounts.models import UserProfile
 from community.models import Community
 from django.core.paginator import Paginator
 from datetime import datetime
+from django.contrib import messages
+from django.db.models import Q
+from django.views.generic import ListView
 # Create your views here.
+
+class ClothesListView(ListView):
+    model=MyClothes
+
 
 #마이페이지로 이동하는 함수
 def mypage(request):
@@ -74,10 +81,11 @@ def my_clothes(request):
     clothes=MyClothes.objects.filter(user=user).order_by('-post_date')
     check=request.user.email
     profiles=UserProfile.objects.get(email=check)
+    selected_weather="날씨전체"
     page=int(request.GET.get('p',1))
     paginator=Paginator(clothes, 3)
     boards=paginator.get_page(page)
-    return render(request, 'myPage/my_clothes.html',{'profiles':profiles, 'clothes':clothes, 'boards':boards})
+    return render(request, 'myPage/my_clothes.html',{'profiles':profiles, 'clothes':clothes, 'boards':boards , 'selected_weather':selected_weather})
 
 #글쓰기
 def new_clothes(request):
@@ -124,3 +132,19 @@ def update_clothes(request, id):
     update_clothes.memo=request.POST['memo']
     update_clothes.save()
     return redirect('myPage:detail_clothes',update_clothes.id)
+
+#날씨따라 분류
+def filter_clothes(request):
+    user = request.user
+    if request.method == "POST":
+        selected_weather = request.POST['weather']
+        if selected_weather == "날씨전체": 
+            return redirect('myPage:my_clothes')
+        else:
+            clothes=MyClothes.objects.filter(user=user, weather=selected_weather).order_by('-post_date')
+            check=request.user.email
+            profiles=UserProfile.objects.get(email=check)
+            page=int(request.GET.get('p',1))
+            paginator=Paginator(clothes, 3)
+            boards=paginator.get_page(page)
+            return render(request, 'myPage/my_clothes.html',{'profiles':profiles, 'clothes':clothes, 'boards':boards, "selected_weather":selected_weather})
