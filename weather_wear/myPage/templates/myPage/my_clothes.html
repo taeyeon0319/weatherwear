@@ -39,24 +39,36 @@
     <div class="col-md-8">
         <!-- Page content-->
         <div class="container-fluid">
+          <div style="font-size:x-large; font-weight:600;">자기 착장 페이지 </div>
+          <br>
+          <a class="btn btn-primary" href="{%url 'myPage:new_clothes'  %}">WRITE</a>
+          <br><br>
           <div id='btnclear'>
             <form method="post" action="{% url 'myPage:filter_clothes' %}">
                 {% csrf_token %}
                 <select name="weather">
-                    <option value="{{selected_weather}}">{{selected_weather}}</option>
-                    <option value="날씨전체">날씨전체</option>
-                    <option value="맑음">맑음</option>
-                    <option value="비">비</option>
-                    <option value="흐림">흐림</option>
-                    <option value="눈">눈</option>
+                    <option value="{{selected_weather}}" class ='fw-bolder'>{{selected_weather}}</option>
+                    <option value="all">날씨전체</option>
+                    <option value="sunny">맑음</option>
+                    <option value="rain">비</option>
+                    <option value="cloud">흐림</option>
+                    <option value="snow">눈</option>
                 </select>
-                <input type="submit" value="검색">
+                <input type="submit" value="카테고리 검색" >
             </form>
         </div>
-        <button id ='btnclear' class = "btn-sm btn-outline-primary" onclick = "location.href = '{% url 'myPage:new_clothes' %}'" style="border: none; margin-top: 1em; margin-bottom: 0.5em; width:100px; ">
-          <div class='fw-bolder'>글 작성</div>
-        </button>
+        &nbsp;
+          <div id='btnclear'>
+            <form method="post" action="{% url 'myPage:filter_temp' selected_weather%}">
+                {% csrf_token %}
+                <input type="number" name="temp" style="width:50px;">
+                <input type="submit" value="온도 검색">
+            </form>
         </div>
+        
+        
+        </div>
+        <br><br>
     </div>
     <br>
     <div class="col-md-8">
@@ -72,7 +84,9 @@
                                <img class="card-img-top" src="{% if c.thumbnail %}{{ c.thumbnail.url }}{% else %}#{% endif %}" alt="..." />
                                 <div class="card-body">
                                     <div class="small text-muted">{{c.post_date}}</div>
-                                    <h2 class="card-title h4">{{c.title}}</h2>
+                                    <h2 class="card-title h4 fw-bolder">{{c.title}}</h2>
+                                    <h4>{{c.weather}}</h4>
+                                    <h5>{{c.temperature}}˚C</h5>
                                     <a class="btn btn-primary" href="{%url 'myPage:detail_clothes' c.id %}">Read more →</a>
                                 </div>
                             </div>
