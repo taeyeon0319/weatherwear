@@ -81,7 +81,7 @@ def my_clothes(request):
     clothes=MyClothes.objects.filter(user=user).order_by('-post_date')
     check=request.user.email
     profiles=UserProfile.objects.get(email=check)
-    selected_weather="날씨전체"
+    selected_weather="all"
     page=int(request.GET.get('p',1))
     paginator=Paginator(clothes, 3)
     boards=paginator.get_page(page)
@@ -138,7 +138,7 @@ def filter_clothes(request):
     user = request.user
     if request.method == "POST":
         selected_weather = request.POST['weather']
-        if selected_weather == "날씨전체": 
+        if selected_weather == "all": 
             return redirect('myPage:my_clothes')
         else:
             clothes=MyClothes.objects.filter(user=user, weather=selected_weather).order_by('-post_date')
@@ -148,3 +148,27 @@ def filter_clothes(request):
             paginator=Paginator(clothes, 3)
             boards=paginator.get_page(page)
             return render(request, 'myPage/my_clothes.html',{'profiles':profiles, 'clothes':clothes, 'boards':boards, "selected_weather":selected_weather})
+
+
+def filter_temp(request, selected_weather): #selected_weather값 받음 >> template수정, url도 포함
+    user=request.user
+    temp=float(request.POST['temp'])#temp로 폼구성
+    div=int(temp)//5
+    if request.method=='POST':
+        if selected_weather=='all':
+            if div>=0:
+                clothes=MyClothes.objects.filter(user=user, temperature__gte=(div*5),temperature__lt=((div+1)*5))
+            else:
+                clothes=MyClothes.objects.filter(user=user, tempterature__lte=(div*5), temperature__gt=((div-1)*5))
+        else:
+            if div>=0:
+                clothes=MyClothes.objects.filter(user=user, temperature__gte=(div*5), temperature__lt=((div+1)*5),weather=selected_weather)
+            else:
+                clothes=MyClothes.objects.filter(user=user, temperature__lte=(div*5), temperature__gt=((div-1)*5), weather=selected_weather)
+    check=request.user.email
+    profiles=UserProfile.objects.get(email=check)
+    page=int(request.GET.get('p',1))
+    paginator=Paginator(clothes, 3)
+    boards=paginator.get_page(page)
+    return render(request, 'myPage/my_clothes.html',{'profiles':profiles, 'clothes':clothes, 'boards':boards, "selected_weather":selected_weather})
+

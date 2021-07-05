@@ -16,10 +16,10 @@ class MyClothes(models.Model):
     title=models.CharField(max_length=300)
     #날씨 카테고리
     WEATHER_CHOICE=(
-        ('맑음','맑음'),
-        ('흐림','흐림'),
-        ('비','비'),
-        ('눈','눈'),
+        ('sunny','맑음'),
+        ('cloud','흐림'),
+        ('rain','비'),
+        ('snow','눈'),
     )
     weather=models.CharField(max_length=20, choices=WEATHER_CHOICE, default="")
     #기온
