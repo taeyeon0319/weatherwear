@@ -152,19 +152,12 @@ def filter_clothes(request):
 
 def filter_temp(request, selected_weather): #selected_weather값 받음 >> template수정, url도 포함
     user=request.user
-    temp=float(request.POST['temp'])#temp로 폼구성
-    div=int(temp)//5
+    temp=int(request.POST['temp'])#temp로 폼구성
     if request.method=='POST':
         if selected_weather=='all':
-            if div>=0:
-                clothes=MyClothes.objects.filter(user=user, temperature__gte=(div*5),temperature__lt=((div+1)*5))
-            else:
-                clothes=MyClothes.objects.filter(user=user, tempterature__lte=(div*5), temperature__gt=((div-1)*5))
+                clothes=MyClothes.objects.filter(user=user, temperature__gte=(temp-2),temperature__lte=(temp+2))
         else:
-            if div>=0:
-                clothes=MyClothes.objects.filter(user=user, temperature__gte=(div*5), temperature__lt=((div+1)*5),weather=selected_weather)
-            else:
-                clothes=MyClothes.objects.filter(user=user, temperature__lte=(div*5), temperature__gt=((div-1)*5), weather=selected_weather)
+                clothes=MyClothes.objects.filter(user=user, temperature__gte=(temp-2), temperature__lt=(temp+2),weather=selected_weather)
     check=request.user.email
     profiles=UserProfile.objects.get(email=check)
     page=int(request.GET.get('p',1))
