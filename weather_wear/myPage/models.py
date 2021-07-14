@@ -4,6 +4,8 @@ from django.db.models.deletion import CASCADE
 import sys
 sys.path.append("..")
 from django.conf import settings
+from datetime import datetime
+from django.utils import timezone
 
 # Create your models here.
 
@@ -25,7 +27,7 @@ class MyClothes(models.Model):
     #기온
     temperature=models.IntegerField(default=0)
     #날짜
-    post_date=models.DateField()
+    post_date=models.DateField(default=timezone.now)
     #작성자
     user=models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name="작성자", default="")
     thumbnail=models.ImageField(upload_to='images', blank=True, null=True, default="{%static 'images/blank.png' %}")
