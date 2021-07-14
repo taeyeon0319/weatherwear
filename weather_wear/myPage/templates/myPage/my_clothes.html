@@ -42,6 +42,7 @@
           <div style="font-size:x-large; font-weight:600;">자기 착장 페이지 </div>
           <br>
           <a class="btn btn-primary" href="{%url 'myPage:new_clothes'  %}">WRITE</a>
+          <a class="btn btn-primary" href="{%url 'myPage:same_day'  %}" >n년 전 오늘</a>
           <br><br>
           <div id='btnclear'>
             <form method="post" action="{% url 'myPage:filter_clothes' %}">
