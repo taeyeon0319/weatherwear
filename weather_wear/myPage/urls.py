@@ -18,5 +18,6 @@ urlpatterns = [
     path('update/<str:id>',views.update_clothes, name="update_clothes"),
     path('filterclothes/', views.filter_clothes, name='filter_clothes'),
     path('filtertemp/<str:selected_weather>',views.filter_temp,name='filter_temp'),
+    path('same_day/',views.same_day,name='same_day'),
 ]
     

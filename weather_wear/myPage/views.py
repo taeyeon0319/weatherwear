@@ -83,7 +83,7 @@ def my_clothes(request):
     profiles=UserProfile.objects.get(email=check)
     selected_weather="all"
     page=int(request.GET.get('p',1))
-    paginator=Paginator(clothes, 3)
+    paginator=Paginator(clothes, 4)
     boards=paginator.get_page(page)
     return render(request, 'myPage/my_clothes.html',{'profiles':profiles, 'clothes':clothes, 'boards':boards , 'selected_weather':selected_weather})
 
@@ -99,7 +99,7 @@ def create_clothes(request):
     new_clothes.title=request.POST['title']
     new_clothes.weather=request.POST['category_radio']
     new_clothes.temperature=request.POST['temperature']
-    new_clothes.post_date=datetime.today()
+    new_clothes.post_date=request.POST['post_date']
     new_clothes.thumbnail=request.FILES.get('thumbnail')
     new_clothes.user=request.user
     new_clothes.memo=request.POST['memo']
@@ -122,11 +122,11 @@ def edit_clothes(request,id):
     return render(request, 'myPage/edit_clothes.html',{'clothes':edit})
 
 def update_clothes(request, id):
-    update_clothes=MyClothes()
+    update_clothes=MyClothes.objects.get(id=id)
     update_clothes.title=request.POST['title']
     update_clothes.weather=request.POST['category_radio']
     update_clothes.temperature=request.POST['temperature']
-    update_clothes.post_date=datetime.today()
+    update_clothes.post_date=request.POST['post_date']
     update_clothes.thumbnail=request.FILES.get('thumbnail')
     update_clothes.user=request.user
     update_clothes.memo=request.POST['memo']
@@ -145,30 +145,37 @@ def filter_clothes(request):
             check=request.user.email
             profiles=UserProfile.objects.get(email=check)
             page=int(request.GET.get('p',1))
-            paginator=Paginator(clothes, 3)
+            paginator=Paginator(clothes, 4)
             boards=paginator.get_page(page)
             return render(request, 'myPage/my_clothes.html',{'profiles':profiles, 'clothes':clothes, 'boards':boards, "selected_weather":selected_weather})
 
 
 def filter_temp(request, selected_weather): #selected_weather값 받음 >> template수정, url도 포함
     user=request.user
-    temp=float(request.POST['temp'])#temp로 폼구성
-    div=int(temp)//5
+    temp=int(request.POST['temp'])#temp로 폼구성
     if request.method=='POST':
         if selected_weather=='all':
-            if div>=0:
-                clothes=MyClothes.objects.filter(user=user, temperature__gte=(div*5),temperature__lt=((div+1)*5))
-            else:
-                clothes=MyClothes.objects.filter(user=user, tempterature__lte=(div*5), temperature__gt=((div-1)*5))
+                clothes=MyClothes.objects.filter(user=user, temperature__gte=(temp-2),temperature__lte=(temp+2))
         else:
-            if div>=0:
-                clothes=MyClothes.objects.filter(user=user, temperature__gte=(div*5), temperature__lt=((div+1)*5),weather=selected_weather)
-            else:
-                clothes=MyClothes.objects.filter(user=user, temperature__lte=(div*5), temperature__gt=((div-1)*5), weather=selected_weather)
+                clothes=MyClothes.objects.filter(user=user, temperature__gte=(temp-2), temperature__lte=(temp+2),weather=selected_weather)
     check=request.user.email
     profiles=UserProfile.objects.get(email=check)
     page=int(request.GET.get('p',1))
-    paginator=Paginator(clothes, 3)
+    paginator=Paginator(clothes, 4)
     boards=paginator.get_page(page)
     return render(request, 'myPage/my_clothes.html',{'profiles':profiles, 'clothes':clothes, 'boards':boards, "selected_weather":selected_weather})
+
+def same_day(request):
+    user=request.user
+    today_month=datetime.today().month
+    today_day=datetime.today().day
+    clothes=MyClothes.objects.filter(user=user, post_date__month=today_month, post_date__day=today_day)
+    check=request.user.email
+    profiles=UserProfile.objects.get(email=check)
+    page=int(request.GET.get('p',1))
+    paginator=Paginator(clothes, 4)
+    boards=paginator.get_page(page)
+    selected_weather="all"
+    return render(request, 'myPage/my_clothes.html',{'profiles':profiles, 'clothes':clothes, 'boards':boards, "selected_weather":selected_weather})
+
 
