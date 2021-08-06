@@ -2,10 +2,19 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Community, Comment, Like
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
+from .filters import CommunityFilter
 
 def show(request):
-    communities = Community.objects.order_by('-pub_date')
-    return render(request, 'community/show.html', {'communities':communities})
+
+    context = {}
+
+    filtered_community = CommunityFilter(
+        request.GET, 
+        queryset=Community.objects.order_by('-pub_date')
+    )
+
+    context['filtered_community'] = filtered_community
+    return render(request, 'community/show.html', context=context)
 
 def detail(request, id):
     community = get_object_or_404(Community, id = id) 

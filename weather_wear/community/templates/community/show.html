@@ -24,6 +24,11 @@
 </style>
 {% if user.is_authenticated %} 
 <div class="container my-3">
+    <form method="get">
+        <p>{{ filtered_community.form.as_p }}</p>
+        <button type="submit">검색</button><br><br>
+    </form>
+
     <table class="table">
         <thead>
             <tr class="thead-blue">
@@ -37,7 +42,7 @@
             </tr>
         </thead>
         <tbody>
-            {% for community in communities %}
+            {% for community in filtered_community.qs %}
             <tr>
                 <td>{{community.gender}}</td>
                 <td>{{community.weather}}</td>
