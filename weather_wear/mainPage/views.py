@@ -4,27 +4,30 @@ from bs4 import BeautifulSoup
 
 def main(request):
     # 지역은 서울로 고정
-    city = 'seoul'
-    # 구글의 날씨 정보를 가져옴
-    html_content = requests.Session().get(f'https://www.google.com/search?q=weather+{city}').text
-    # 크롤링
-    soup = BeautifulSoup(html_content, 'html.parser')
+    city = 'location'
+    # 서울 지역의 날씨 정보 불러오기
+    URL = f'https://www.google.com/search?q=weather+{city}'
+    # 헤더 설정
+    headers = {"User-Agent": 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36 OPR/67.0.3575.115'}
+    page = requests.get(URL, headers=headers)
+    soup = BeautifulSoup(page.content, 'html.parser', from_encoding="utf8")
     result = dict()
-    # 화면에 보여주는 데이터 설정
-    # 지역
-    result['region'] = soup.find("span", attrs={"class": "BNeawe tAd8D AP7Wnd"}).text
-    # 현재 온도 (23도)
-    result['temp_now'] = soup.find("div", attrs={"class": "BNeawe iBp4i AP7Wnd"}).text
-    # 현재 시간, 날씨 (맑음, 흐림 ..)
-    result['dayhour'], result['weather_now'] = soup.find("div", attrs={"class": "BNeawe tAd8D AP7Wnd"}).text.split('\n')
-    # test
-    print(soup.find("div", attrs={"class": "BNeawe tAd8D AP7Wnd"}).text)
-    print(soup.find("span", attrs={"class": "BNeawe tAd8D AP7Wnd"}).text)
-    print(soup.find("div", attrs={"class": "BNeawe iBp4i AP7Wnd"}).text)
-    print(soup.find("div", attrs={"class": "BNeawe s3v9rd AP7Wnd"}).text)
-    print(soup.find("span", attrs={"class": "BNeawe s3v9rd AP7Wnd"}).text)
-    print(soup.find('div', attrs={'class': 'BNeawe vvjwJb AP7Wnd'}).text)
 
-    
+    # 가져올 데이터 세팅
+    # 1. 지역
+    result['region'] = soup.find("div", {"id": "wob_loc"}).text
+    # 2. 시간
+    result['dayhour'] = soup.find("div", {"id": "wob_dts"}).text
+    # 3. 기온
+    result['temp_now'] = soup.find("span", {"id": "wob_tm"}).text
+    # 4. 날씨
+    result['weather_now'] = soup.find("span", {"id": "wob_dc"}).text
+    # 5. 강수
+    result['precipitation'] = soup.find("span", {"id": "wob_pp"}).text
+    # 6. 습도
+    result['humidity'] = soup.find("span", {"id": "wob_hm"}).text
+    # 7. 풍속
+    result['wind'] = soup.find("span", {"id": "wob_ws"}).text
+
 
     return render(request, 'mainPage/mainPage.html', {'weather': result}) 
