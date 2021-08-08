@@ -3,15 +3,28 @@ from .models import Community, Comment, Like
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from .filters import CommunityFilter
+from django.db.models import Count
 
 def show(request):
 
     context = {}
 
-    filtered_community = CommunityFilter(
-        request.GET, 
-        queryset=Community.objects.order_by('-pub_date')
-    )
+    sort = request.GET.get('sort', '')
+
+    if sort == 'likes':
+        filtered_community = CommunityFilter(
+            queryset = Community.objects.all().annotate(likes=Count('like_user_set')).order_by('-likes')
+        )
+    elif sort == 'views':
+        filtered_community = CommunityFilter(
+            queryset=Community.objects.order_by('-view_count'),
+        )
+    else:    
+        filtered_community = CommunityFilter(
+            request.GET, 
+            queryset=Community.objects.order_by('-pub_date'),
+            
+        )
 
     context['filtered_community'] = filtered_community
     return render(request, 'community/show.html', context=context)
