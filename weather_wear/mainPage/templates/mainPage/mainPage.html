@@ -35,7 +35,10 @@
                                     <p class="lead fw-normal text-muted mb-0">시간: {{ weather.dayhour }} </p>
                                     <p class="lead fw-normal text-muted mb-0">기온: {{ weather.temp_now }} </p>
                                     <p class="lead fw-normal text-muted mb-0">날씨: {{ weather.weather_now }} </p>
-                                    <!--{% if weather.weather_now == "흐림" %}-->      
+                                    <p class="lead fw-normal text-muted mb-0">강수: {{ weather.precipitation }} </p>
+                                    <p class="lead fw-normal text-muted mb-0">습도: {{ weather.humidity }} </p>
+                                    <p class="lead fw-normal text-muted mb-0">풍속: {{ weather.wind }} </p>
+                                    <!--{% if weather.weather_now == "흐림" %}-->
                                         {% if weather.temp_now == "23°C" %}
                                             <div style="float: left;">
                                                 <div>
