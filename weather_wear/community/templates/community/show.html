@@ -23,7 +23,22 @@
     }
 </style>
 {% if user.is_authenticated %} 
-<div class="container my-3">
+<div class="container my-3">    
+    <select id="sort-select" onchange="location = this.value;">
+        {% if "/?sort=likes" in request.get_full_path %}	
+            <option class="sort-new" value="?sort=new">최신순</option>	
+            <option class="sort-likes" value="?sort=likes" selected >좋아요순</option>
+            <option class="sort-views" value="?sort=views">조회순</option>
+        {% elif "/?sort=views" in request.get_full_path %}	
+            <option class="sort-new" value="?sort=new">최신순</option>	
+            <option class="sort-likes" value="?sort=likes">좋아요순</option>
+            <option class="sort-views" value="?sort=views" selected>조회순</option>
+        {% else %}
+            <option class="sort-new" value="?sort=new" selected >최신순</option>
+             <option class="sort-likes" value="?sort=likes">좋아요순</option>	
+             <option class="sort-views" value="?sort=views">조회순</option>
+        {% endif %}
+    </select>
     <form method="get">
         <p>{{ filtered_community.form.as_p }}</p>
         <button type="submit">검색</button><br><br>
