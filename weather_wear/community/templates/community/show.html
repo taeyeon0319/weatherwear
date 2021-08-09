@@ -22,8 +22,10 @@
         background-color: rgb(187, 223, 236);
     }
 </style>
+<body>
 {% if user.is_authenticated %} 
-<div class="container my-3">    
+{% load community_extras %}  
+<div class="container my-3">  
     <select id="sort-select" onchange="location = this.value;">
         {% if "/?sort=likes" in request.get_full_path %}	
             <option class="sort-new" value="?sort=new">최신순</option>	
@@ -57,7 +59,7 @@
             </tr>
         </thead>
         <tbody>
-            {% for community in filtered_community.qs %}
+            {% for community in person_page_obj %}
             <tr>
                 <td>{{community.gender}}</td>
                 <td>{{community.weather}}</td>
@@ -80,7 +82,25 @@
             {% endfor %}
         </tbody>
     </table>
-    <button><a href="{% url 'community:new' %}">글쓰기</a></button>
+    <div class="pagination">
+        <span class="step-links">
+            {% if person_page_obj.has_previous %}
+                <a href="{% my_url 1 'page' request.GET.urlencode %}">&laquo; First</a>
+                <a href="{% my_url person_page_obj.previous_page_number 'page' request.GET.urlencode %}">Previous</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{person_page_obj.number}} of {{person_page_obj.paginator.num_pages}}.
+            </span>
+
+
+            {% if person_page_obj.has_next %}
+                <a href="{% my_url person_page_obj.next_page_number 'page' request.GET.urlencode %}">Next</a>
+                <a href="{% my_url person_page_obj.paginator.num_pages 'page' request.GET.urlencode %}">Last</a>
+            {% endif %}
+        </span>
+    </div>
+    <button><a href ="{% url 'community:new' %}">글쓰기</a></button>
 </div>
 {% else %}
     <center style="margin-bottom: 100px;">
@@ -89,5 +109,5 @@
     <button><a href="{% url 'account_signup' %}">회원가입</a></button>
     </center>
 {% endif %}
-
+</body>
 {% endblock %}
