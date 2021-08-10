@@ -4,6 +4,7 @@ from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from .filters import CommunityFilter
 from django.db.models import Count
+from django.core.paginator import Paginator
 
 def show(request):
 
@@ -27,6 +28,13 @@ def show(request):
         )
 
     context['filtered_community'] = filtered_community
+
+    paginated_filtered_persons = Paginator(filtered_community.qs, 7)
+    page_number = request.GET.get('page')
+    person_page_obj = paginated_filtered_persons.get_page(page_number)
+
+    context['person_page_obj'] = person_page_obj
+
     return render(request, 'community/show.html', context=context)
 
 def detail(request, id):

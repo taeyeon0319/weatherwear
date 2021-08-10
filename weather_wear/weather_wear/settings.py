@@ -46,9 +46,9 @@ INSTALLED_APPS = [
 
 # 프로젝트에 생성한 app 목록 추가
 INSTALLED_APPS += [
+    'community.apps.CommunityConfig',
     'mainPage',
     'myPage',
-    'community',
     'accounts',
 
 ]
