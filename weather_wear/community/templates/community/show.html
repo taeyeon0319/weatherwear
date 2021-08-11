@@ -11,7 +11,6 @@
             </div>
         </div>
     </div>
-{% if user.is_authenticated %} 
 {% load community_extras %}  
 <div class="container my-3">  
     <select id="sort-select" onchange="location = this.value;">
@@ -111,13 +110,11 @@
     <section class="logout-page">
             <h3>로그인 후 이용이 가능합니다.</h3>
             <div class="btn-area">
-                <button><a href="{% url 'account_login' %}" >로그인</a></button>
-                <button><a href="{% url 'account_signup' %}">회원가입</a></button>
+                <button onclick="location.href='{% url 'account_login' %}'">로그인</button>
+                <button onclick="location.href='{% url 'account_signup' %}'">회원가입</button>
             </div>
     </section>
 </div>
-{% endif %}
-</body>
 {% endif %}
 </body>
 <style>
