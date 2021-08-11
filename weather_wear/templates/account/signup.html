@@ -1,82 +1,61 @@
-{% extends 'base.html' %}
 {% load static %}
-{% load i18n %}
-{% block content %}
-<header class="masthead" style="background-image: url('/static/images/cloud.jpg')"> <!-- 배경이미지 날씨 넣기 -->
-    <div class="container position-relative px-4 px-lg-5">
-        <div class="row gx-4 gx-lg-5 justify-content-center">
-            <div class="col-md-10 col-lg-8 col-xl-7">
-                <div class="site-heading">
-                    <h1>오늘은 뭐 입을까?</h1>
-                    <span class="subheading"></span>
-                </div>
-            </div>
-        </div>
+<head>
+  <link rel="stylesheet" href="{% static 'css/signup.css' %}?a">
+</head>
+<body>
+<section class="signup-form">
+  <div class="box">
+  <h1><a href="{% url 'mainPage:mainpage' %}">Weather-wear</a></h1><br>
+  <div class = "caption">이미 계정이 있으신가요? 바로 <a href="{% url 'account_login' %}">로그인</a> 하세요.</div>
+  <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+    {% csrf_token %} 
+    <div class="int-area">
+      <input type="text" name="username"  minlength="1" maxlength="150" required="" id="id_username">
+      <label for="id_username">아이디</label>
     </div>
-</header>
-<section id="signup-page">
-  <div>
-    <h1><a href="{% url 'mainPage:main' %}">오늘은 뭐 입을까?</a></h1><br>
-  </div>  
-  <p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
-  <div class="signup-sec">
-    <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <button type="submit" class="upload-btn">회원가입</button>   
+    <div class="int-area">
+      <input type="password" name="password1" required="" id="id_password1">
+      <label for="id_password1">비밀번호</label>
+    </div>
+    <div class="int-area">
+      <input type="password" name="password2" required="" id="id_password2">
+      <label for="id_password2">비밀번호 (확인)</label>
+    </div>
+    <div class="int-area"> 
+      <input type="text" name="name"  maxlength="30" required="" id="id_name">
+      <label for="id_name">이름</label> 
+    </div>
+    <div class="int-area">
+      <input type="email" name="email"  required="" id="id_email">
+      <label for="id_email">이메일</label> 
+    </div>
+    <div class="sel-area">  
+      <label for="id_gender">성별</label><br> 
+      <select name="gender" id="id_gender">
+        <option value="남자">남자</option>
+        <option value="여자">여자</option>
+      </select>
+    </div>
+    <div class="sel-area">
+      <label for="id_bodyForm">체형</label><br>
+      <select name="bodyForm" id="id_bodyForm">
+        <option value="마름">마름</option>    
+        <option value="보통">보통</option>
+        <option value="과체중">과체중</option>
+      </select>
+    </div>
+    <div class="int-area num">
+      <input type="text" name="age" required="" id="id_age">
+      <label for="id_age">나이</label>
+    </div>
+    <div class="int-area num">
+      <input type="text" name="height" required="" id="id_height">
+      <label for="id_height">키</label>
+    </div>
+    <div class="btn-area">
+      <input type="submit" value="회원가입">  
+    </div>  
     </form>
-  </div>
+    </div>
 </section>
-<style type="text/css">
-    /* login 화면 */
-    #login-page{
-      text-align: center;
-      margin: 90px 0px;
-      padding-top: 30px;
-      padding-bottom: 100px;
-    }
-    #login-page h1{
-      margin-bottom: 20px;
-    }
-    #login-page h1 a{
-      text-decoration: none;
-      color: black;
-    }
-    #login-page div p a{
-      text-decoration: none;
-      color: black;
-    }
-    /* logout 화면 */
-    #logout-page{
-      text-align: center;
-      margin: 150px 0px;
-      padding-top: 29px;
-      padding-bottom: 100px;
-    }
-    #logout-page h1 {
-      margin-bottom: 30px;
-    }
-    #logout-page h1 a{
-      text-decoration: none;
-      color: black;
-    }
-    .upload-btn{
-      background:#fff; 
-      border:1 none;
-      border-radius: 5px;
-    }
-    /* 회원가입 화면 */
-    #signup-page{
-      text-align: center;
-      padding: 40px 0px;
-    }
-    #signup-page h1 a{
-      text-decoration: none;
-      color: black;
-    }
-    #signup-page p a{
-      text-decoration: none;
-      color: black;
-    }
-    </style>
-{% endblock %}
+</body>

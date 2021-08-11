@@ -1,94 +1,18 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
-<head>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@700&display=swap" rel="stylesheet">
-    <style>
-        h1 , h2 {
-            font-family: 'Gaegu';
-            font-size: 40px
-        }
-        #span {
-            font-family: 'Gaegu', cursive;
-        }
-    </style>
-</head>
-<header class="masthead" style="background-image: url('/static/images/cloud.jpg')"> <!-- 배경이미지 날씨 넣기 -->
-    <div class="container position-relative px-4 px-lg-5">
-        <div class="row gx-4 gx-lg-5 justify-content-center">
-            <div class="col-md-10 col-lg-8 col-xl-7">
-                <div class="site-heading">
-                    <h1>오늘은 뭐 입을까?</h1>
-                    <span class="subheading"> 날씨에 맞는 옷을 추천해드려요 </span>
-                </div>
-                <br><br>
-                
-                <div>
-                    <section class="py-5 bg-light" id="scroll-target">
-                        <div class="container px-5 my-5">
-                            <div class="row gx-5 align-items-center">
-                                <div class="col-lg-9">
-                                    <h2 class="fw-bolder">추천하는 옷차림</h2>
-                                    <p class="lead fw-normal text-muted mb-0">지역: {{ weather.region }} </p>
-                                    <p class="lead fw-normal text-muted mb-0">시간: {{ weather.dayhour }} </p>
-                                    <p class="lead fw-normal text-muted mb-0">기온: {{ weather.temp_now }} </p>
-                                    <p class="lead fw-normal text-muted mb-0">날씨: {{ weather.weather_now }} </p>
-                                    <p class="lead fw-normal text-muted mb-0">강수: {{ weather.precipitation }} </p>
-                                    <p class="lead fw-normal text-muted mb-0">습도: {{ weather.humidity }} </p>
-                                    <p class="lead fw-normal text-muted mb-0">풍속: {{ weather.wind }} </p>
-                                    <!--{% if weather.weather_now == "흐림" %}-->
-                                        {% if weather.temp_now == "23°C" %}
-                                            <div style="float: left;">
-                                                <div>
-                                                    <img style="width:50%" src="{% static 'images/ex.jpg' %}" width="600px" height="200px" ><img style="width:50%" src="{% static 'images/man_summer.jpg' %}" width="600px" height="200px">
-                                                </div>
-                                            </div>
-                                            <br><br><br>
-                                            <p>코디 : 반팔, 얇은 셔츠, 반바지, 면바지</p>
-                                        {% elif weather.temp_now == "24°C" %}
-                                            <div style="float: left;">
-                                                <div>
-                                                    <img style="width:50%" src="{% static 'images/ex.jpg' %}" width="600px" height="200px" ><img style="width:50%" src="{% static 'images/man_summer.jpg' %}" width="600px" height="200px">
-                                                </div>
-                                            </div>
-                                            <br><br><br>
-                                            <p>코디 : 반팔, 얇은 셔츠, 반바지, 면바지</p>
-                                        {% elif weather.temp_now == "25°C" %}
-                                            <div style="float: left;">
-                                                <div>
-                                                    <img style="width:50%" src="{% static 'images/ex.jpg' %}" width="600px" height="200px" ><img style="width:50%" src="{% static 'images/man_summer.jpg' %}" width="600px" height="200px">
-                                                </div>
-                                            </div>
-                                            <br><br><br>
-                                            <p>코디 : 반팔, 얇은 셔츠, 반바지, 면바지</p>
-                                        {% elif weather.temp_now == "26°C" %}
-                                            <div style="float: left;">
-                                                <div>
-                                                    <img style="width:50%" src="{% static 'images/ex.jpg' %}" width="600px" height="200px" ><img style="width:50%" src="{% static 'images/man_summer.jpg' %}" width="600px" height="200px">
-                                                </div>
-                                            </div>
-                                            <br><br>
-                                            <p>코디 : 반팔, 얇은 셔츠, 반바지, 면바지</p>
-                                        {% elif weather.temp_now == "20°C" %}
-                                            <p>코디 : 얇은 가디건, 긴파티, 면바지, 청바지</p>
-                                        {% elif weather.temp_now == "21°C" %}
-                                            <p>코디 : 얇은 가디건, 긴바지, 면바지, 청바지</p>
-                                        {% elif weather.temp_now == "22°C" %}
-                                            <p>코디 : 얇은 가디건, 긴바지, 면바지, 청바지</p>       
-                                        {% else %}
-                                            <p>코디 : 민소매, 반팔, 반바지, 치마</p>
-                                        {% endif %}    
-                                    {% endif %}
-                                    
-                                </div>
-                            </div>
-                        </div>
-                    </section>
+<section class="hero-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5">
+                <div class="hs-text">
+                    <span>날씨에 알맞은 옷 추천 서비스</span>
+                    <h2>Weather-wear</h2>
+                    <p>실시간 날씨 정보를 파악하여 날씨와 어울리는 옷차림을 추천해 주는 사이트</p>
+                    <a href="{% url 'mainPage:today' %}" class="primary-btn">오늘의 추천 옷 보러가기</a>
                 </div>
             </div>
         </div>
     </div>
-</header>
+</section>
 {% endblock %}

@@ -2,7 +2,7 @@ from django.shortcuts import render
 import requests
 from bs4 import BeautifulSoup
 
-def main(request):
+def today(request):
     # 지역은 서울로 고정
     city = 'location'
     # 서울 지역의 날씨 정보 불러오기
@@ -30,4 +30,7 @@ def main(request):
     result['wind'] = soup.find("span", {"id": "wob_ws"}).text
 
 
-    return render(request, 'mainPage/mainPage.html', {'weather': result}) 
+    return render(request, 'mainPage/today.html', {'weather': result}) 
+
+def mainpage(request):
+    return render(request, 'mainPage/mainpage.html')

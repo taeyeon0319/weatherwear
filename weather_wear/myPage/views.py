@@ -54,7 +54,7 @@ def writing_list(request):
     for i in community:
         count += 1
     page = int(request.GET.get('p',1))
-    paginator = Paginator(community,3)
+    paginator = Paginator(community,10)
     boards = paginator.get_page(page)
     return render(request, 'myPage/writing_list.html',{'boards':boards, 'count':count,'selected_weather':selected_weather })
 
