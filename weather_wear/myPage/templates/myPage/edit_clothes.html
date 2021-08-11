@@ -4,62 +4,60 @@
 <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'>
 <link rel='stylesheet prefetch' href='https://files.krve.io/f/eyespot.css'>
 <link rel='stylesheet prefetch' href='https://cdn.cloudcache.dk/materialdesignicons/1.6.50/css/materialdesignicons.min.css'>
-<header class="masthead" style="background-image: url('/static/images/cloud.jpg')"> 
-  <div class="container position-relative px-4 px-lg-5">
-      <div class="row gx-4 gx-lg-5 justify-content-center">
-          <div class="col-md-10 col-lg-8 col-xl-7">
-              <div class="site-heading">
-                  <h3>마이페이지</h3>
-              </div>
+<section class="services-section spad" style="height: 100%;">
+  <div class="row">
+      <div class="col-lg-12">
+          <div class="section-title">
+              <img src="{% static 'images/write.png' %}">
+              <h2>자기 착장 페이지 수정</h2>
           </div>
       </div>
   </div>
-</header>
-<div class="container" style="margin-top: 5em; margin-bottom: 10em;">
+  <div class="container">
+    <div class="row">
     <!--카테고리 목록-->
-    <div class="col-md-4">
-        <ul class="list-group help-group">
-          <div class="faq-list list-group nav nav-tabs">
-            <!-- 7개의 탭 -->
-            <a href="{% url 'myPage:mypage' %}" class="list-group-item" role="tab" data-toggle="tab">
-              마이페이지
-            </a>
-            <a href="{% url 'myPage:my_clothes' %}" class="list-group-item active" role="tab" data-toggle="tab">
-              <i class="mdi mdi-star"></i> 자기 착장 페이지
-            </a>
-            <a href="{% url 'myPage:writing_list' %}" class="list-group-item" role="tab" data-toggle="tab">
-              <i class="mdi mdi-star"></i> 커뮤니티에 작성한 글
-            </a>
-            <a href="{% url 'myPage:profile' %}" class="list-group-item" role="tab" data-toggle="tab">
-              <i class="mdi mdi-account"></i> 개인정보
-            </a>
-          </div>
-        </ul>
+    <div class="col-lg-3">
+      <ul class="list-group help-group">
+        <div class="faq-list list-group nav nav-tabs">
+          <!-- 7개의 탭 -->
+          <a href="{% url 'myPage:mypage' %}" class="list-group-item active">
+            마이페이지
+          </a>
+          <a href="{% url 'myPage:my_clothes' %}" class="list-group-item" >
+            <i class="mdi mdi-star"></i> 자기 착장 페이지
+          </a>
+          <a href="{% url 'myPage:writing_list' %}" class="list-group-item">
+            <i class="mdi mdi-star"></i> 커뮤니티에 작성한 글
+          </a>
+          <a href="{% url 'myPage:profile' %}" class="list-group-item">
+            <i class="mdi mdi-account"></i> 개인정보
+          </a>
+        </div>
+      </ul>
     </div>
     <div class="col-md-8">
         <!-- Page content-->
-        <div class="container-fluid">
-            <h3>수정하기</h3>
+        <div class="write container-fluid">
                 <table class="profile">
                     <thead>
                     <tr>
-                      <th scope="cols">항목</th>
-                      <th scope="cols">내용</th>
+                      <th scope="cols"><p>항목</p></th>
+                      <th scope="cols"><p>내용</p></th>
                     </tr>
                     </thead>
                     <tbody>
                     <form action="{% url 'myPage:update_clothes' clothes.id%}" method="POST" enctype="multipart/form-data">
                         {%csrf_token%}
                     <tr>
-                      <th scope="row">제목</th>
-                      <td><input type="text" name="title" value="{{clothes.title}}"></td>
+                      <th scope="row"><p>제목</p></th>
+                      <td><input type="text" name="title" value="{{clothes.title}}" required></td>
                     </tr>
                     <tr>
-                      <th scope="row">날짜</th>
-                      <td><input type="date" name="post_date" id='post_date' value="{{clothes.post_date|date:'Y-m-d'}}" ></td>
+                      <th scope="row"><p>날짜</p></th>
+                      <td><input type="date" name="post_date" id='post_date' value="{{clothes.post_date|date:'Y-m-d'}}" required></td>
                     </tr>
                     <tr>
-                        <th scope="row">카테고리</th>
+                        <th scope="row"><p>카테고리</p></th>
                         <td>
                           {% if clothes.weather == 'sunny' %}
                           <div class="form-check form-check-inline">
@@ -137,15 +135,15 @@
                         </td>
                     </tr>
                    <tr>
-                        <th scope="row">온도</th>
-                        <td><input type="number" name="temperature" value="{{clothes.temperature}}"></td>
+                        <th scope="row"><p>온도</p></th>
+                        <td><input type="number" min="-20" max="50" name="temperature" value="{{clothes.temperature}}" required></td>
                     </tr>
                     <tr>
-                        <th scope="row">사진</th>
-                        <td><input type='file' name='thumbnail' value="{{clothes.thumbnail}}"></td>
+                        <th scope="row"><p>사진</p></th>
+                        <td><input class="picture" type='file' name='thumbnail' value="{{clothes.thumbnail}}" required></td>
                     </tr>
                     <tr>
-                      <th scope="row">메모</th>
+                      <th scope="row"><p>메모</p></th>
                       <td><textarea type='text' name='memo' id='' cols='30' rows='5' >{{clothes.memo}}</textarea></td>
                   </tr>
                     <tr>
@@ -167,6 +165,9 @@
 <!-- Core theme JS-->
 <script src="js/scripts.js"></script>
 <style type="text/css">
+    a:hover, a:focus{
+      text-decoration: none;
+    }
     .list-group.help-group {
       margin-bottom: 20px;
       padding-left: 0;
@@ -264,41 +265,51 @@
     .panel.panel-help .panel-body p:last-of-type {
       margin: 0;
     }
-    .profile {
-  border-collapse: collapse;
-  text-align: left;
-  line-height: 1.5;
-  border-left: 1px solid #ccc;
-}
-
-.profile thead th {
-  padding: 10px;
-  font-weight: bold;
-  border-top: 1px solid #ccc;
-  border-right: 1px solid #ccc;
-  border-bottom: 2px solid #c00;
-  background: #dcdcd1;
-}
-.profile tbody th {
-  width: 150x;
-  padding: 10px;
-  font-weight: bold;
-  vertical-align: top;
-  border-right: 1px solid #ccc;
-  border-bottom: 1px solid #ccc;
-  background: #ececec;
-}
-.profile td {
-  width: 350px;
-  padding: 10px;
-  vertical-align: top;
-  border-right: 1px solid #ccc;
-  border-bottom: 1px solid #ccc;
-  background: white;
-}
 .thumbanil{
   max-width: 500px;
   height:auto;
+}
+table{
+    margin-left: auto;
+    margin-right: auto;    
+    width: 80%;
+}
+table td{
+    padding-bottom: 20px;
+    text-align: left;
+}
+.write{
+    height: fit-content;
+    background: #222222;
+}
+.subject{
+    width: 20%;
+}
+button{
+    background: #e32879;
+    color:#fff;
+    border: none;
+    border-radius: 10px;
+    width: 80px;
+    height: 40px;
+}
+th{
+  padding: 10px 10px 15px 10px;
+}
+.form-check{
+  width: 20%;
+}
+td textarea {
+  width: 100%;
+}
+label{
+  color:#fff;
+}
+.picture{
+  color:#fff;
+}
+p{
+  color: #fff;
 }
     </style>
 {%endblock%}

@@ -3,5 +3,6 @@ from .views import *
 
 app_name = "mainPage"
 urlpatterns = [
-    path('', main, name="main"),
+    path('', mainpage,name="mainpage"),
+    path('today/', today, name="today"),
 ]
