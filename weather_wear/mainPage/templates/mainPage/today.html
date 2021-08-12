@@ -14,28 +14,244 @@
         <div class="row">
         <div class="col-lg-9">
             <div class="as-pic">
-                <table style="width: 100%;">
-                    <!--상의 사진 들어가는  곳-->
-                    <tr>
-                        <td><div class="image" style="background: #222222;"><img src="{% static 'images/상의1.jpg' %}" style="width: 50px; height:200px; object-fit: contain;" alt="사진"></td>
-                        <td><div class="image" style="background: #222222;"><img src="{% static 'images/상의1.jpg' %}" style="width: 50px; height:200px; object-fit: contain;" alt="사진"></td>
-                            <td><div class="image" style="background: #222222;"><img src="{% static 'images/상의1.jpg' %}" style="width: 50px; height:200px; object-fit: contain;" alt="사진"></td>    
-                    </tr>
-                    <!--하의 사진 들어가는 곳-->
-                    <tr>
-                        <td>
-                        <div class="image" style="background: #222222;"><img src="{% static 'images/하의1.jpg' %}" style="width: 50px; height:200px; object-fit: contain;" alt="사진"></td>
-                    </tr>
-                    <!--악세사리 사진들어가는 곳-->
-                    <tr>
-                    </tr>
-                </table>
+                {% if temp_int >= 27 %}
+                    <table style="width: 80%; margin-left: auto; margin-right: auto;">
+                        <!--상의 사진 들어가는  곳-->
+                        <tr>
+                            <td><div class="image" style="background: #222222;"><img src="{% static 'image/summer1.jpg' %}" style="width: 50px; height:200px; object-fit: fill;" alt="사진"></td>
+                            <td><div class="image" style="background: #222222;"><img src="{% static 'image/summer3.jpg' %}" style="width: 50px; height:200px; object-fit: fill;" alt="사진"></td>
+                            <td><div class="image" style="background: #222222;"><img src="{% static 'image/summer5.jpg' %}" style="width: 50px; height:200px; object-fit: fill;" alt="사진"></td>    
+                        </tr>
+                        <!--하의 사진 들어가는 곳-->
+                        <tr>
+                            <td><div class="image" style="background: #222222;"><img src="{% static 'image/summer9.jpg' %}" style="width: 50px; height:200px; object-fit: fill;" alt="사진"></td>
+                            <td><div class="image" style="background: #222222;"><img src="{% static 'image/summer10.jpg' %}" style="width: 50px; height:200px; object-fit: fill;" alt="사진"></td>
+                            <td><div class="image" style="background: #222222;"><img src="{% static 'image/summer11.jpg' %}" style="width: 50px; height:200px; object-fit: fill;" alt="사진"></td>  
+                        </tr>
+                        <!--악세사리 사진들어가는 곳-->
+                        <tr>
+                            <td><div class="image" style="background: #222222;"><img src="{% static 'image/summer12.jpg' %}" style="width: 50px; height:200px; object-fit: fill;" alt="사진"></td>
+                            <td><div class="image" style="background: #222222;"><img src="{% static 'image/summer13.jpg' %}" style="width: 50px; height:200px; object-fit: fill;" alt="사진"></td>
+                            <td><div class="image" style="background: #222222;"><img src="{% static 'image/cap.jpg' %}" style="width: 50px; height:200px; object-fit: fill;" alt="사진"></td>
+                        </tr>
+                    </table>
+                {% elif temp_int >= 23 %}
+                    <table style="width: 80%; margin-left: auto; margin-right: auto;">
+                        <!--상의 사진 들어가는  곳-->
+                        <tr>
+                            <td><div class="image" style="background: #222222;"><img src="{% static 'image/summer2.jpg' %}" style="width: 50px; height:200px; object-fit: fill;" alt="사진"></td>
+                            <td><div class="image" style="background: #222222;"><img src="{% static 'image/summer6.jpg' %}" style="width: 50px; height:200px; object-fit: fill;" alt="사진"></td>
+                            <td><div class="image" style="background: #222222;"><img src="{% static 'image/summer7.jpg' %}" style="width: 50px; height:200px; object-fit: fill;" alt="사진"></td>    
+                        </tr>
+                        <!--하의 사진 들어가는 곳-->
+                        <tr>
+                            <td><div class="image" style="background: #222222;"><img src="{% static 'image/summer8.jpg' %}" style="width: 50px; height:200px; object-fit: fill;" alt="사진"></td>
+                            <td><div class="image" style="background: #222222;"><img src="{% static 'image/summer9.jpg' %}" style="width: 50px; height:200px; object-fit: fill;" alt="사진"></td>
+                            <td><div class="image" style="background: #222222;"><img src="{% static 'image/summer11.jpg' %}" style="width: 50px; height:200px; object-fit: fill;" alt="사진"></td>  
+                        </tr>
+                        <!--악세사리 사진들어가는 곳-->
+                        <tr>
+                            <td><div class="image" style="background: #222222;"><img src="{% static 'image/summer12.jpg' %}" style="width: 50px; height:200px; object-fit: fill;" alt="사진"></td>
+                            <td><div class="image" style="background: #222222;"><img src="{% static 'image/summer13.jpg' %}" style="width: 50px; height:200px; object-fit: fill;" alt="사진"></td>
+                            <td><div class="image" style="background: #222222;"><img src="{% static 'image/cap.jpg' %}" style="width: 50px; height:200px; object-fit: fill;" alt="사진"></td>
+                        </tr>
+                    </table>
+                {% elif temp_int >= 20 %}
+                    <table style="width: 80%; margin-left: auto; margin-right: auto;">
+                        <!--상의 사진 들어가는  곳-->
+                        <tr>
+                            <td><div class="image" style="background: #222222;"><img src="{% static 'image/summer1.jpg' %}" style="width: 50px; height:200px; object-fit: fill;" alt="사진"></td>
+                            <td><div class="image" style="background: #222222;"><img src="{% static 'image/summer3.jpg' %}" style="width: 50px; height:200px; object-fit: fill;" alt="사진"></td>
+                            <td><div class="image" style="background: #222222;"><img src="{% static 'image/summer5.jpg' %}" style="width: 50px; height:200px; object-fit: fill;" alt="사진"></td>    
+                        </tr>
+                        <!--하의 사진 들어가는 곳-->
+                        <tr>
+                            <td><div class="image" style="background: #222222;"><img src="{% static 'image/summer9.jpg' %}" style="width: 50px; height:200px; object-fit: fill;" alt="사진"></td>
+                            <td><div class="image" style="background: #222222;"><img src="{% static 'image/summer10.jpg' %}" style="width: 50px; height:200px; object-fit: fill;" alt="사진"></td>
+                            <td><div class="image" style="background: #222222;"><img src="{% static 'image/summer11.jpg' %}" style="width: 50px; height:200px; object-fit: fill;" alt="사진"></td>  
+                        </tr>
+                        <!--악세사리 사진들어가는 곳-->
+                        <tr>
+                            <td><div class="image" style="background: #222222;"><img src="{% static 'image/summer12.jpg' %}" style="width: 50px; height:200px; object-fit: fill;" alt="사진"></td>
+                            <td><div class="image" style="background: #222222;"><img src="{% static 'image/summer13.jpg' %}" style="width: 50px; height:200px; object-fit: fill;" alt="사진"></td>
+                            <td><div class="image" style="background: #222222;"><img src="{% static 'image/cap.jpg' %}" style="width: 50px; height:200px; object-fit: fill;" alt="사진"></td>
+                        </tr>
+                    </table>
+                {% elif temp_int >= 17 %}
+                    <table style="width: 80%; margin-left: auto; margin-right: auto;">
+                        <!--상의 사진 들어가는  곳-->
+                        <tr>
+                            <td><div class="image" style="background: #222222;"><img src="{% static 'image/summer1.jpg' %}" style="width: 50px; height:200px; object-fit: fill;" alt="사진"></td>
+                            <td><div class="image" style="background: #222222;"><img src="{% static 'image/summer3.jpg' %}" style="width: 50px; height:200px; object-fit: fill;" alt="사진"></td>
+                            <td><div class="image" style="background: #222222;"><img src="{% static 'image/summer5.jpg' %}" style="width: 50px; height:200px; object-fit: fill;" alt="사진"></td>    
+                        </tr>
+                        <!--하의 사진 들어가는 곳-->
+                        <tr>
+                            <td><div class="image" style="background: #222222;"><img src="{% static 'image/summer9.jpg' %}" style="width: 50px; height:200px; object-fit: fill;" alt="사진"></td>
+                            <td><div class="image" style="background: #222222;"><img src="{% static 'image/summer10.jpg' %}" style="width: 50px; height:200px; object-fit: fill;" alt="사진"></td>
+                            <td><div class="image" style="background: #222222;"><img src="{% static 'image/summer11.jpg' %}" style="width: 50px; height:200px; object-fit: fill;" alt="사진"></td>  
+                        </tr>
+                        <!--악세사리 사진들어가는 곳-->
+                        <tr>
+                            <td><div class="image" style="background: #222222;"><img src="{% static 'image/summer12.jpg' %}" style="width: 50px; height:200px; object-fit: fill;" alt="사진"></td>
+                            <td><div class="image" style="background: #222222;"><img src="{% static 'image/summer13.jpg' %}" style="width: 50px; height:200px; object-fit: fill;" alt="사진"></td>
+                            <td><div class="image" style="background: #222222;"><img src="{% static 'image/cap.jpg' %}" style="width: 50px; height:200px; object-fit: fill;" alt="사진"></td>
+                        </tr>
+                    </table>
+                {% elif temp_int >= 12 %}
+                    <table style="width: 80%; margin-left: auto; margin-right: auto;">
+                        <!--상의 사진 들어가는  곳-->
+                        <tr>
+                            <td><div class="image" style="background: #222222;"><img src="{% static 'image/summer1.jpg' %}" style="width: 50px; height:200px; object-fit: fill;" alt="사진"></td>
+                            <td><div class="image" style="background: #222222;"><img src="{% static 'image/summer3.jpg' %}" style="width: 50px; height:200px; object-fit: fill;" alt="사진"></td>
+                            <td><div class="image" style="background: #222222;"><img src="{% static 'image/summer5.jpg' %}" style="width: 50px; height:200px; object-fit: fill;" alt="사진"></td>    
+                        </tr>
+                        <!--하의 사진 들어가는 곳-->
+                        <tr>
+                            <td><div class="image" style="background: #222222;"><img src="{% static 'image/summer9.jpg' %}" style="width: 50px; height:200px; object-fit: fill;" alt="사진"></td>
+                            <td><div class="image" style="background: #222222;"><img src="{% static 'image/summer10.jpg' %}" style="width: 50px; height:200px; object-fit: fill;" alt="사진"></td>
+                            <td><div class="image" style="background: #222222;"><img src="{% static 'image/summer11.jpg' %}" style="width: 50px; height:200px; object-fit: fill;" alt="사진"></td>  
+                        </tr>
+                        <!--악세사리 사진들어가는 곳-->
+                        <tr>
+                            <td><div class="image" style="background: #222222;"><img src="{% static 'image/summer12.jpg' %}" style="width: 50px; height:200px; object-fit: fill;" alt="사진"></td>
+                            <td><div class="image" style="background: #222222;"><img src="{% static 'image/summer13.jpg' %}" style="width: 50px; height:200px; object-fit: fill;" alt="사진"></td>
+                            <td><div class="image" style="background: #222222;"><img src="{% static 'image/cap.jpg' %}" style="width: 50px; height:200px; object-fit: fill;" alt="사진"></td>
+                        </tr>
+                    </table>
+                {% endif %}
             </div>
         </div>
         <div class="col-lg-3">
             <div class="as-text ap-text">
                 <p class="f-para">
-                    <!--옷 설명 들어가는  곳-->
+                    {% if temp_int >= 27 %}                    
+                    <div style="padding-top: 21ex;">
+                        <h6>코디</h6><br>
+                        <h6> 반팔, 얇은 셔츠, 반바지, 면바지, 린넨소재의 옷, 민소매, 원피스</h6>
+                        {% if humidity_int >= 60 %}
+                            <table>
+                                <ul>
+                                    <li>통풍이 잘되는 옷 입기</li>
+                                    <li>땀배출이 쉬운 옷 입기</li>
+                                    <li>린넨 자켓 추천</li>
+                                    <li>신발 레인부츠 (만약 날씨가 비라면)</li>
+                                </ul>
+                            </table>
+                        {% endif %}
+
+                        {% if wind_float >= 10.8 %}
+                            <p>태풍급 바람! 우비를 착용하세요!</p>
+                        {% elif wind_float >= 8.0 %}
+                            <p>바람이 쎄서 쌀쌀할 수 있어요- 겉옷 챙기기!</p>
+                        {% elif wind_float >= 5.5 %}
+                            <p>먼지가 날리고 작은 가지가 흔들려요-겉옷 추천!</p>
+                        {% else %}
+                            <p>나뭇잎이 살랑이는 정도의 바람~~</p>
+                        {% endif %}
+                    </div>    
+                    {% elif temp_int >= 23 %}                    
+                    <div>
+                        <h6>코디</h6><br>
+                        <h6> 얇은 긴팔, 얇은 셔츠, 반팔, 면바지, 반바지</h6>
+                        {% if humidity_int >= 60 %}
+                            <table>
+                                <ul>
+                                    <li>통풍이 잘되는 옷 입기</li>
+                                    <li>땀배출이 쉬운 옷 입기</li>
+                                    <li>린넨 자켓 추천</li>
+                                    <li>신발 레인부츠 (만약 날씨가 비라면)</li>
+                                </ul>
+                            </table>
+                        {% endif %}
+
+                        {% if wind_float >= 10.8 %}
+                            <p>태풍급 바람! 우비를 착용하세요!</p>
+                        {% elif wind_float >= 8.0 %}
+                            <p>바람이 쎄서 쌀쌀할 수 있어요- 겉옷 챙기기!</p>
+                        {% elif wind_float >= 5.5 %}
+                            <p>먼지가 날리고 작은 가지가 흔들려요-겉옷 추천!</p>
+                        {% else %}
+                            <p>나뭇잎이 살랑이는 정도의 바람~~</p>
+                        {% endif %}
+                    </div>
+                    {% elif temp_int >= 20 %}                                       
+                    <div>
+                        <h6>코디</h6><br>
+                        <h6> 긴팔티, 후드티, 셔츠, 면바지, 슬렉스, 원피스</h6>
+                        {% if humidity_int >= 60 %}
+                            <table>
+                                <ul>
+                                    <li>통풍이 잘되는 옷 입기</li>
+                                    <li>땀배출이 쉬운 옷 입기</li>
+                                    <li>린넨 자켓 추천</li>
+                                    <li>신발 레인부츠 (만약 날씨가 비라면)</li>
+                                </ul>
+                            </table>
+                        {% endif %}
+
+                        {% if wind_float >= 10.8 %}
+                            <p>태풍급 바람! 우비를 착용하세요!</p>
+                        {% elif wind_float >= 8.0 %}
+                            <p>바람이 쎄서 쌀쌀할 수 있어요- 겉옷 챙기기!</p>
+                        {% elif wind_float >= 5.5 %}
+                            <p>먼지가 날리고 작은 가지가 흔들려요-겉옷 추천!</p>
+                        {% else %}
+                            <p>나뭇잎이 살랑이는 정도의 바람~~</p>
+                        {% endif %}
+                    </div>
+                    {% elif temp_int >= 17 %}                                       
+                    <div>
+                        <h6>코디</h6><br>
+                        <h6> 니트&가디건, 후드티, 맨투맨, 얇은 자켓, 면바지, 슬렉스</h6>
+                        {% if humidity_int >= 60 %}
+                            <table>
+                                <ul>
+                                    <li>통풍이 잘되는 옷 입기</li>
+                                    <li>땀배출이 쉬운 옷 입기</li>
+                                    <li>린넨 자켓 추천</li>
+                                    <li>신발 레인부츠 (만약 날씨가 비라면)</li>
+                                </ul>
+                            </table>
+                        {% endif %}
+
+                        {% if wind_float >= 10.8 %}
+                            <p>태풍급 바람! 우비를 착용하세요!</p>
+                        {% elif wind_float >= 8.0 %}
+                            <p>바람이 쎄서 쌀쌀할 수 있어요- 겉옷 챙기기!</p>
+                        {% elif wind_float >= 5.5 %}
+                            <p>먼지가 날리고 작은 가지가 흔들려요-겉옷 추천!</p>
+                        {% else %}
+                            <p>나뭇잎이 살랑이는 정도의 바람~~</p>
+                        {% endif %}
+                    </div>
+                    {% elif temp_int >= 12 %}                                       
+                    <div>
+                        <h6>코디</h6><br>
+                        <h6> 자켓, 두꺼운 가디건, 니트, 간절기 외투, 트렌치 코트</h6>
+                        {% if humidity_int >= 60 %}
+                            <table>
+                                <ul>
+                                    <li>통풍이 잘되는 옷 입기</li>
+                                    <li>땀배출이 쉬운 옷 입기</li>
+                                    <li>린넨 자켓 추천</li>
+                                    <li>신발 레인부츠 (만약 날씨가 비라면)</li>
+                                </ul>
+                            </table>
+                        {% endif %}
+
+                        {% if wind_float >= 10.8 %}
+                            <p>태풍급 바람! 우비를 착용하세요!</p>
+                        {% elif wind_float >= 8.0 %}
+                            <p>바람이 쎄서 쌀쌀할 수 있어요- 겉옷 챙기기!</p>
+                        {% elif wind_float >= 5.5 %}
+                            <p>먼지가 날리고 작은 가지가 흔들려요-겉옷 추천!</p>
+                        {% else %}
+                            <p>나뭇잎이 살랑이는 정도의 바람~~</p>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+
                 </p>
             </div>
         </div>
