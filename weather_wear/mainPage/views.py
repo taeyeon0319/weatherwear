@@ -28,9 +28,14 @@ def today(request):
     result['humidity'] = soup.find("span", {"id": "wob_hm"}).text
     # 7. 풍속
     result['wind'] = soup.find("span", {"id": "wob_ws"}).text
+    temp_int=int(result['temp_now'])
+    precipitation_int=int(result['precipitation'].rstrip('%'))
+    humidity_int=int(result['humidity'].rstrip('%'))
+    wind_float=float(result['wind'].rstrip('m/s'))
+    
+    return render(request, 'mainPage/today.html',{'weather': result , 'temp_int' : temp_int , 'precipitation_int': precipitation_int , 'humidity_int': humidity_int , 'wind_float': wind_float})
+ 
 
-
-    return render(request, 'mainPage/today.html', {'weather': result}) 
 
 def mainpage(request):
-    return render(request, 'mainPage/mainpage.html')
+    return render(request, 'mainPage/mainPage.html')
