@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
+
 <section class="hero-section">
     <div class="container">
         <div class="row">
@@ -12,43 +13,7 @@
                     <a href="{% url 'mainPage:today' %}" class="primary-btn">오늘의 추천 옷 보러가기</a>
                 </div>
             </div>
-            <table style="margin-right: auto; margin-left: auto;">
-                <tr style="font-weight: bold;">
-                    <td class="lead fw-normal mb-0">지역:</td>
-                    <td class="lead fw-normal mb-0" >{{ weather.region }}</td>
-                </tr>
-                <tr>
-                    <td class="lead fw-normal mb-0">시간:</td>
-                    <td class="lead fw-normal mb-0">{{ weather.dayhour }}</td>
-                </tr>
-                <tr>
-                    <td class="lead fw-normal mb-0">기온:</td>
-                    <td class="lead fw-normal mb-0">{{ weather.temp_now }}</td>
-                </tr>
-                <tr>
-                    <td class="lead fw-normal mb-0">날씨:</td>
-                    <td class="lead fw-normal mb-0">{{ weather.weather_now }}</td>
-                </tr>
-                <tr>
-                    <td class="lead fw-normal mb-0">강수:</td>
-                    <td class="lead fw-normal mb-0">{{ weather.precipitation }}</td>
-                </tr>
-                <tr>
-                    <td class="lead fw-normal mb-0">습도:</td>
-                    <td class="lead fw-normal mb-0">{{ weather.humidity }}</td>
-                </tr>
-                <tr>
-                    <td class="lead fw-normal mb-0">풍속:</td>
-                    <td class="lead fw-normal mb-0">{{ weather.wind }}</td>
-                </tr>
-            </table>
         </div>
     </div>
 </section>
-<style>
-td{
-    font-weight: bold;
-    color: #fff;
-}
-</style>
-{% endblock %}
+{% endblock %} 
