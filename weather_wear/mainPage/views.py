@@ -1,6 +1,15 @@
 from django.shortcuts import render
 import requests
 from bs4 import BeautifulSoup
+from requests.api import options
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+import urllib.request
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait 
+from selenium.webdriver.support import expected_conditions as EC
+options = webdriver.ChromeOptions()
+options.add_experimental_option("excludeSwitches",["enable-logging"])
 
 def today(request):
     # 지역은 서울로 고정
@@ -38,4 +47,34 @@ def today(request):
 
 
 def mainpage(request):
+<<<<<<< HEAD
     return render(request, 'mainPage/mainPage.html')
+=======
+    driver = webdriver.Chrome(options=options)
+    # 구글 날씨 주소 접속
+    driver.get("https://www.google.com/search?q=weather+location")
+
+    result = dict()
+    # 1. 지역
+    result['region'] = driver.find_element_by_xpath('//*[@id="wob_loc"]').text
+    # 2. 시간
+    result['dayhour'] = driver.find_element_by_xpath('//*[@id="wob_dts"]').text
+    # 3. 기온
+    result['temp_now'] = driver.find_element_by_xpath('//*[@id="wob_tm"]').text
+    # 4. 날씨
+    result['weather_now'] = driver.find_element_by_xpath('//*[@id="wob_dc"]').text
+    # 5. 강수
+    result['precipitation'] = driver.find_element_by_xpath('//*[@id="wob_pp"]').text
+    # 6. 습도
+    result['humidity'] = driver.find_element_by_xpath('//*[@id="wob_hm"]').text
+    # 7. 풍속
+    result['wind'] = driver.find_element_by_xpath('//*[@id="wob_ws"]').text
+
+    driver.close()
+    temp_int=int(result['temp_now'])
+    precipitation_int=int(result['precipitation'].rstrip('%'))
+    humidity_int=int(result['humidity'].rstrip('%'))
+    wind_float=float(result['wind'].rstrip('m/s'))
+
+    return render(request, 'mainPage/mainPage.html',{'weather':result})
+>>>>>>> cfd13cf5e9dd26dd9b1a3dd1280f32656ceaac1d
