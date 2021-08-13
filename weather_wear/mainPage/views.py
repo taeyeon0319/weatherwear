@@ -47,6 +47,9 @@ def today(request):
 
 
 def mainpage(request):
+<<<<<<< HEAD
+    return render(request, 'mainPage/mainPage.html')
+=======
     driver = webdriver.Chrome(options=options)
     # 구글 날씨 주소 접속
     driver.get("https://www.google.com/search?q=weather+location")
@@ -74,3 +77,4 @@ def mainpage(request):
     wind_float=float(result['wind'].rstrip('m/s'))
 
     return render(request, 'mainPage/mainPage.html',{'weather':result})
+>>>>>>> cfd13cf5e9dd26dd9b1a3dd1280f32656ceaac1d
